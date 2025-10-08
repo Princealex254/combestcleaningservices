@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMBEST Cleaning Services Kenya | Professional Residential & Commercial Cleaning</title>
+    <meta name="description" content="Professional cleaning services across Kenya. Residential, commercial, pest control & gardening services. Reliable, affordable & trusted cleaning solutions in Nairobi.">
+    <meta name="keywords" content="cleaning services Kenya, residential cleaning Nairobi, commercial cleaning services Kenya, pest control Nairobi, gardening services Kenya, professional cleaners Kenya">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "COMBEST Cleaning Services",
+        "description": "Professional cleaning services across Kenya including residential, commercial, pest control and gardening services.",
+        "url": "https://combestcleaning.co.ke",
+        "telephone": ["0706635218", "0728359014", "0717384875"],
+        "email": "combestcleaningservices@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Mugunga Green",
+            "addressLocality": "Westlands",
+            "addressRegion": "Nairobi",
+            "addressCountry": "Kenya"
+        },
+        "openingHours": "Mo-Fr 08:00-18:00,Sa 08:00-13:00",
+        "priceRange": "$$",
+        "serviceArea": {
+            "@type": "Country",
+            "name": "Kenya"
+        }
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: #ffd700;
+            transform: scale(1.02);
+        }
+        
+        .logo-img {
+            height: 60px;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        
+        .nav-menu {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,115,230,0.1), rgba(87,184,70,0.1));
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+            font-weight: 700;
+            animation: fadeInUp 1s ease;
+            line-height: 1.2;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            font-weight: 400;
+            line-height: 1.6;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #57b846, #4a9e3a);
+            color: white;
+            padding: 20px 45px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(87,184,70,0.4);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease 0.6s both;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(87,184,70,0.5);
+        }
+        
+        /* Services Overview */
+        .services-overview {
+            padding: 120px 20px;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #0073e6;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-text h2 {
+            color: #0073e6;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .services-link {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .services-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,115,230,0.3);
+        }
+        
+        .services-cta:hover {
+            background: linear-gradient(135deg, #57b846, #0073e6);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,115,230,0.4);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #0073e6, #57b846);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,115,230,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+        
+        .service-card h3 {
+            color: #0073e6;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-slide {
+            display: none;
+            text-align: center;
+            padding: 4rem;
+            background: white;
+            border-radius: 20px;
+        }
+        
+        .testimonial-slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            position: relative;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: #57b846;
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            opacity: 0.3;
+        }
+        
+        .testimonial-stars {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #0073e6;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-dots {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 8px;
+            background-color: #ddd;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            transform: scale(1.2);
+        }
+        
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #20BA5A;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-icon {
+            font-size: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-text {
+            white-space: nowrap;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .whatsapp-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+                min-width: 180px;
+            }
+            
+            .whatsapp-text {
+                font-size: 11px;
+            }
+            
+            .whatsapp-icon {
+                font-size: 18px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 20px 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: #57b846;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 0.5rem;
+            color: #bdc3c7;
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #57b846;
+            transform: translateX(5px);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #57b846, #4a9e3a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .social-icon:hover {
+            background: linear-gradient(135deg, #4a9e3a, #57b846);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(87,184,70,0.4);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        
+        .designer-credit {
+            background: linear-gradient(135deg, rgba(87,184,70,0.1), rgba(0,115,230,0.1));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid rgba(87,184,70,0.3);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+        
+        .designer-credit:hover {
+            background: linear-gradient(135deg, rgba(87,184,70,0.2), rgba(0,115,230,0.2));
+            transform: translateY(-2px);
+        }
+        
+        .designer-credit a {
+            color: #57b846;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .designer-credit a:hover {
+            color: #0073e6;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: linear-gradient(135deg, #0073e6, #57b846);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                backdrop-filter: blur(10px);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-slide {
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="mylogo.png" alt="COMBEST Cleaning Services logo" class="logo-img">
+                COMBEST Cleaning Services
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About Us</a></li>
+                <li><a href="/services/">Services</a></li>
+                <li><a href="/gallery/">Gallery</a></li>
+                <li><a href="/careers/">Careers</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Professional Cleaning Services Across Kenya</h1>
+            <p>Professional Cleaning Services in Kenya – Reliable, Affordable & Eco-Friendly for Homes & Businesses</p>
+            <a href="/contact/#contact-form" class="cta-button">Book a Service</a>
+        </div>
+    </section>
+
+    <!-- Mission, Vision & Values Snippet -->
+    <section class="section" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 80px 20px;">
+        <div class="container">
+            <h2 class="section-title">Why Choose COMBEST?</h2>
+            <p class="section-subtitle">Our commitment to excellence</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="color: #0073e6; margin-bottom: 1rem;">🎯 Our Mission</h3>
+                    <p style="color: #666; line-height: 1.6;">To provide reliable, affordable, and eco-friendly cleaning solutions that exceed our clients' expectations across Kenya.</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="color: #0073e6; margin-bottom: 1rem;">🔮 Our Vision</h3>
+                    <p style="color: #666; line-height: 1.6;">To become Kenya's most trusted cleaning service provider, setting the gold standard for professionalism and customer satisfaction.</p>
+                </div>
+                <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="color: #0073e6; margin-bottom: 1rem;">⭐ Our Values</h3>
+                    <p style="color: #666; line-height: 1.6;"><strong>Integrity • Reliability • Excellence • Eco-Friendly</strong><br>We conduct business with honesty, deliver consistent results, never settle for "good enough," and protect Kenya's environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services-overview">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive cleaning solutions tailored to meet your specific needs</p>
+            <div class="services-link">
+                <a href="/services/#services" class="services-cta">View All Services →</a>
+            </div>
+            <div class="services-grid">
+                <article class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Residential Cleaning</h3>
+                    <p>Complete house cleaning services including carpet, mattress, sofa cleaning, and general house maintenance for your home.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="/services/#residential" style="background: #0073e6; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 500; margin-right: 0.5rem; transition: all 0.3s ease;" onmouseover="this.style.background='#005bb5'" onmouseout="this.style.background='#0073e6'">Learn More</a>
+                        <a href="/contact/#contact-form" style="background: #57b846; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.background='#4a9e3a'" onmouseout="this.style.background='#57b846'">Book Now</a>
+                    </div>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Commercial Cleaning</h3>
+                    <p>Professional office, hospital, school, and bank cleaning services to maintain a clean and healthy work environment.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="/services/#commercial" style="background: #0073e6; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 500; margin-right: 0.5rem; transition: all 0.3s ease;" onmouseover="this.style.background='#005bb5'" onmouseout="this.style.background='#0073e6'">Learn More</a>
+                        <a href="/contact/#contact-form" style="background: #57b846; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.background='#4a9e3a'" onmouseout="this.style.background='#57b846'">Book Now</a>
+                    </div>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon">🐛</div>
+                    <h3>Pest Control</h3>
+                    <p>Effective pest control solutions for bed bugs, cockroaches, termites, mosquitoes, and other unwanted pests.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="/services/#pest-control" style="background: #0073e6; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 500; margin-right: 0.5rem; transition: all 0.3s ease;" onmouseover="this.style.background='#005bb5'" onmouseout="this.style.background='#0073e6'">Learn More</a>
+                        <a href="/contact/#contact-form" style="background: #57b846; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.background='#4a9e3a'" onmouseout="this.style.background='#57b846'">Book Now</a>
+                    </div>
+                </article>
+                <article class="service-card">
+                    <div class="service-icon">🌱</div>
+                    <h3>Gardening Services</h3>
+                    <p>Professional landscaping and garden maintenance services to keep your outdoor spaces beautiful and well-maintained.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="/services/#gardening" style="background: #0073e6; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 500; margin-right: 0.5rem; transition: all 0.3s ease;" onmouseover="this.style.background='#005bb5'" onmouseout="this.style.background='#0073e6'">Learn More</a>
+                        <a href="/contact/#contact-form" style="background: #57b846; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.background='#4a9e3a'" onmouseout="this.style.background='#57b846'">Book Now</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Hear from our satisfied customers across Kenya</p>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"COMBEST Cleaning Services has been our trusted partner for over 2 years. Their professional approach and attention to detail is unmatched. Highly recommended!"</p>
+                    <p class="testimonial-author">- Sarah Mwangi, Nairobi</p>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Excellent service! They transformed our office space completely. The team is punctual, professional, and uses eco-friendly products. We're very satisfied."</p>
+                    <p class="testimonial-author">- John Kimani, Westlands</p>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Outstanding pest control service! They eliminated our termite problem completely and provided excellent follow-up service. Great value for money."</p>
+                    <p class="testimonial-author">- Grace Wanjiku, Karen</p>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <div style="text-align: center; margin-top: 1rem;">
+                <button onclick="nextSlide()" style="background: #28a745; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Next Slide</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📞 0706635218 / 0728359014 / 0717384875</p>
+                <p>📧 combestcleaningservices@gmail.com</p>
+                <p>📍 Westlands, Nairobi</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Mon-Fri: 8AM-6PM | Sat: 8AM-1PM | Sun: Closed</p>
+                <p>Emergency: 24/7</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Get Started</h3>
+                <a href="/contact/#contact-form" style="background: #57b846; color: white; padding: 12px 20px; border-radius: 25px; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 1rem; transition: all 0.3s ease;" onmouseover="this.style.background='#4a9e3a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#57b846'; this.style.transform='translateY(0)'">
+                    📞 Request Free Quote
+                </a>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">🐦</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 COMBEST Cleaning Services. All rights reserved.</p>
+            <div class="designer-credit">
+                Website designed by <a href="https://www.princealex.pro" target="_blank" rel="noopener">Prince Alex Digital</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/254717384875?text=Hello! I'm interested in your cleaning services." class="whatsapp-btn" target="_blank" rel="noopener">
+            <span class="whatsapp-icon">💬</span>
+            <span class="whatsapp-text">We are online. Let's chat!</span>
+        </a>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Testimonial Slider
+        let slideIndex = 1;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(n) {
+            console.log('showSlide called with:', n);
+            // Use global slides if available (from Firebase), otherwise use local slides
+            const currentSlides = window.slides || slides;
+            const currentDots = window.dots || dots;
+            
+            console.log('Current slides:', currentSlides ? currentSlides.length : 0);
+            console.log('Current dots:', currentDots ? currentDots.length : 0);
+            
+            if (n > currentSlides.length) { 
+                window.slideIndex = slideIndex = 1; 
+                n = 1;
+            }
+            if (n < 1) { 
+                window.slideIndex = slideIndex = currentSlides.length; 
+                n = currentSlides.length;
+            }
+            
+            currentSlides.forEach(slide => slide.classList.remove('active'));
+            currentDots.forEach(dot => dot.classList.remove('active'));
+            
+            if (currentSlides[n - 1]) {
+                currentSlides[n - 1].classList.add('active');
+                console.log('Activated slide:', n);
+            }
+            if (currentDots[n - 1]) {
+                currentDots[n - 1].classList.add('active');
+                console.log('Activated dot:', n);
+            }
+            
+            // Update both local and global slideIndex
+            window.slideIndex = slideIndex = n;
+        }
+
+        function currentSlide(n) {
+            window.slideIndex = slideIndex = n;
+            showSlide(n);
+        }
+        
+        // Make currentSlide globally accessible
+        window.currentSlide = currentSlide;
+        
+        // Next slide function for testing
+        function nextSlide() {
+            const currentSlides = window.slides || slides;
+            if (currentSlides && currentSlides.length > 1) {
+                window.slideIndex = window.slideIndex || slideIndex;
+                window.slideIndex++;
+                if (window.slideIndex > currentSlides.length) { window.slideIndex = 1; }
+                console.log('Manual next slide to:', window.slideIndex);
+                showSlide(window.slideIndex);
+            } else {
+                console.log('Not enough slides for manual next:', currentSlides ? currentSlides.length : 0);
+            }
+        }
+        
+        // Make nextSlide globally accessible
+        window.nextSlide = nextSlide;
+
+        // Auto-advance testimonials
+        let autoSlideInterval;
+        let isPaused = false;
+        
+        function startAutoSlide() {
+            console.log('Starting auto-slide...');
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            
+            // Get current slides
+            const currentSlides = window.slides || slides;
+            console.log('Auto-slide check - slides found:', currentSlides ? currentSlides.length : 0);
+            
+            if (!currentSlides || currentSlides.length <= 1) {
+                console.log('Not enough slides for auto-sliding:', currentSlides ? currentSlides.length : 0);
+                return;
+            }
+            
+            autoSlideInterval = setInterval(() => {
+                if (!isPaused) {
+                    // Get fresh slides reference
+                    const freshSlides = window.slides || slides;
+                    if (freshSlides && freshSlides.length > 1) {
+                        window.slideIndex = window.slideIndex || slideIndex;
+                        window.slideIndex++;
+                        if (window.slideIndex > freshSlides.length) { window.slideIndex = 1; }
+                        console.log('Auto-sliding to slide:', window.slideIndex);
+                        showSlide(window.slideIndex);
+                    }
+                } else {
+                    console.log('Auto-slide paused');
+                }
+            }, 7000);
+        }
+        
+        // Make startAutoSlide globally accessible
+        window.startAutoSlide = startAutoSlide;
+        
+        // Start auto-sliding after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait a bit for Firebase to potentially load testimonials
+            setTimeout(() => {
+                startAutoSlide();
+            }, 2000);
+        });
+        
+        // Also start auto-sliding immediately (fallback)
+        setTimeout(() => {
+            console.log('Fallback auto-slide start');
+            startAutoSlide();
+        }, 3000);
+        
+        // Pause auto-sliding on hover
+        const testimonialSection = document.querySelector('.testimonials');
+        if (testimonialSection) {
+            testimonialSection.addEventListener('mouseenter', () => {
+                isPaused = true;
+            });
+            
+            testimonialSection.addEventListener('mouseleave', () => {
+                isPaused = false;
+            });
+        }
+        
+        // Pause auto-sliding when user clicks on dots
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('dot')) {
+                isPaused = true;
+                // Resume auto-sliding after 10 seconds of inactivity
+                setTimeout(() => {
+                    isPaused = false;
+                }, 10000);
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards for animation
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Firebase Configuration and Real-time Data Loading
+        (async function() {
+            try {
+                // Import Firebase modules
+                const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
+                const { getFirestore, collection, getDocs, onSnapshot, query, orderBy } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+
+                // Firebase configuration
+                const firebaseConfig = {
+                    apiKey: "AIzaSyC0TdBjLeGimGoYZwLxzC4fQLPBdSzrT0A",
+                    authDomain: "universityweb-19e1e.firebaseapp.com",
+                    projectId: "universityweb-19e1e",
+                    storageBucket: "universityweb-19e1e.firebasestorage.app",
+                    messagingSenderId: "401942926589",
+                    appId: "1:401942926589:web:c98e8d71ae6bd396775a94"
+                };
+
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+
+                // Load testimonials from Firestore
+                function loadTestimonials() {
+                    console.log('Loading testimonials from Firestore...');
+                    
+                    // Set up real-time listener for testimonials
+                    const testimonialsQuery = query(collection(db, 'testimonials'), orderBy('createdAt', 'desc'));
+                    
+                    onSnapshot(testimonialsQuery, (snapshot) => {
+                        console.log('Testimonials updated:', snapshot.docs.length);
+                        
+                        // Filter only visible testimonials
+                        const visibleTestimonials = snapshot.docs.filter(doc => {
+                            const testimonial = doc.data();
+                            return testimonial.status === 'visible' || !testimonial.status; // Default to visible if no status
+                        });
+                        
+                        console.log('Visible testimonials:', visibleTestimonials.length);
+                        
+                        if (visibleTestimonials.length > 0) {
+                            // Clear existing testimonials
+                            const testimonialSlider = document.querySelector('.testimonial-slider');
+                            const testimonialDots = document.querySelector('.testimonial-dots');
+                            
+                            if (testimonialSlider && testimonialDots) {
+                                // Clear existing content
+                                testimonialSlider.innerHTML = '';
+                                testimonialDots.innerHTML = '';
+                                
+                                // Add visible testimonials from Firestore
+                                visibleTestimonials.forEach((doc, index) => {
+                                    const testimonial = doc.data();
+                                    
+                                    // Create testimonial slide
+                                    const slide = document.createElement('div');
+                                    slide.className = `testimonial-slide ${index === 0 ? 'active' : ''}`;
+                                    slide.innerHTML = `
+                                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                                        <p class="testimonial-text">"${testimonial.text}"</p>
+                                        <p class="testimonial-author">- ${testimonial.author}, ${testimonial.location}</p>
+                                    `;
+                                    testimonialSlider.appendChild(slide);
+                                    
+                                    // Create dot
+                                    const dot = document.createElement('span');
+                                    dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                                    dot.onclick = () => currentSlide(index + 1);
+                                    testimonialDots.appendChild(dot);
+                                });
+                                
+                                // Update global variables for slider
+                                window.slides = document.querySelectorAll('.testimonial-slide');
+                                window.dots = document.querySelectorAll('.dot');
+                                window.slideIndex = 1;
+                                
+                                // Restart auto-sliding with new testimonials
+                                if (visibleTestimonials.length > 1) {
+                                    startAutoSlide();
+                                }
+                                
+                                console.log('Visible testimonials loaded successfully:', visibleTestimonials.length);
+                            }
+                        } else {
+                            console.log('No visible testimonials found in Firestore - keeping static testimonials');
+                            // Don't clear the static testimonials if Firestore is empty
+                            // Just update the global variables to use the existing static testimonials
+                            window.slides = document.querySelectorAll('.testimonial-slide');
+                            window.dots = document.querySelectorAll('.dot');
+                            window.slideIndex = 1;
+                            
+                            // Restart auto-sliding with static testimonials
+                            if (window.slides && window.slides.length > 1) {
+                                startAutoSlide();
+                            }
+                        }
+                    }, (error) => {
+                        console.error('Error loading testimonials:', error);
+                    });
+                }
+
+                // Initialize testimonials loading
+                loadTestimonials();
+
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+            }
+        })();
+    </script>
+</body>
+</html>

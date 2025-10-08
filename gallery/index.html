@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | COMBEST Cleaning Services - Professional Cleaning Projects in Kenya</title>
+    <meta name="description" content="View our gallery of professional cleaning projects in Kenya. Before and after photos of residential cleaning, commercial cleaning, pest control, and gardening services in Nairobi.">
+    <meta name="keywords" content="cleaning gallery Kenya, professional cleaning photos Nairobi, before after cleaning Kenya, COMBEST cleaning projects, cleaning service portfolio Kenya">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "COMBEST Cleaning Services",
+        "description": "Professional cleaning services across Kenya including residential, commercial, pest control and gardening services.",
+        "url": "https://combestcleaning.co.ke",
+        "telephone": ["0706635218", "0728359014", "0717384875"],
+        "email": "combestcleaningservices@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Mugunga Green",
+            "addressLocality": "Westlands",
+            "addressRegion": "Nairobi",
+            "addressCountry": "Kenya"
+        },
+        "openingHours": "Mo-Su 08:00-18:00",
+        "priceRange": "$$",
+        "serviceArea": {
+            "@type": "Country",
+            "name": "Kenya"
+        }
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            color: #ffd700;
+            transform: scale(1.02);
+        }
+        
+        .logo-img {
+            height: 60px;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        
+        .nav-menu {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ffd700;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('hero4.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 120px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,115,230,0.1), rgba(87,184,70,0.1));
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+            font-weight: 700;
+            animation: fadeInUp 1s ease;
+            line-height: 1.2;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .hero-content p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            font-weight: 400;
+            line-height: 1.6;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #0073e6;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-text h2 {
+            color: #0073e6;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Gallery Filter */
+        .gallery-filter {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: white;
+            color: #0073e6;
+            border: 2px solid #0073e6;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,115,230,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,115,230,0.3);
+        }
+        
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: white;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #6c757d;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+        }
+
+        /* Professional image container styling */
+        .gallery-image.has-image {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 20px 20px 0 0;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        /* Alternative display modes for different image types */
+        .gallery-image img.cover-mode {
+            object-fit: cover;
+        }
+
+        .gallery-image img.contain-mode {
+            object-fit: contain;
+        }
+
+        .gallery-image img.fill-mode {
+            object-fit: fill;
+        }
+
+        /* High quality image loading */
+        .gallery-image img {
+            image-rendering: auto;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+
+        /* Loading state */
+        .gallery-image img.loading {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-image img.loaded {
+            opacity: 1;
+        }
+
+        /* Error state styling */
+        .gallery-image .error-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .gallery-image .error-placeholder small {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            color: #adb5bd;
+        }
+
+        @supports (image-rendering: -webkit-optimize-contrast) {
+            .gallery-image img {
+                image-rendering: -webkit-optimize-contrast;
+            }
+        }
+
+        /* Ensure high quality on retina displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .gallery-image img {
+                image-rendering: auto;
+            }
+        }
+        
+        .gallery-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="rgba(255,255,255,0.1)" cx="20" cy="20" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="80" cy="30" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="40" cy="60" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="70" cy="80" r="2"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay span {
+            color: white;
+            font-size: 3rem;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay span {
+            transform: scale(1);
+        }
+        
+        .gallery-info {
+            padding: 1.5rem;
+            background: white;
+        }
+        
+        .gallery-info h3 {
+            color: #0073e6;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .gallery-info p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 20px 20px 0 0;
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lightbox-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="rgba(255,255,255,0.1)" cx="20" cy="20" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="80" cy="30" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="40" cy="60" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="70" cy="80" r="2"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .lightbox-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .lightbox-info h3 {
+            color: #0073e6;
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .lightbox-info p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .lightbox-prev {
+            left: -80px;
+        }
+        
+        .lightbox-next {
+            right: -80px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="rgba(255,255,255,0.1)" cx="20" cy="20" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="80" cy="30" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="40" cy="60" r="2"/><circle fill="rgba(255,255,255,0.1)" cx="70" cy="80" r="2"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #0073e6;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,115,230,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255,255,255,0.4);
+        }
+        
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            min-width: 200px;
+            justify-content: center;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #20BA5A;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+        }
+        
+        .whatsapp-icon {
+            font-size: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-text {
+            white-space: nowrap;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 15px;
+                right: 15px;
+            }
+            
+            .whatsapp-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+                min-width: 180px;
+            }
+            
+            .whatsapp-text {
+                font-size: 11px;
+            }
+            
+            .whatsapp-icon {
+                font-size: 18px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 20px 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: #57b846;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .footer-section p, .footer-section li {
+            margin-bottom: 0.5rem;
+            color: #bdc3c7;
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #57b846;
+            transform: translateX(5px);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #57b846, #4a9e3a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .social-icon:hover {
+            background: linear-gradient(135deg, #4a9e3a, #57b846);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(87,184,70,0.4);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        
+        .designer-credit {
+            background: linear-gradient(135deg, rgba(87,184,70,0.1), rgba(0,115,230,0.1));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid rgba(87,184,70,0.3);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+        
+        .designer-credit:hover {
+            background: linear-gradient(135deg, rgba(87,184,70,0.2), rgba(0,115,230,0.2));
+            transform: translateY(-2px);
+        }
+        
+        .designer-credit a {
+            color: #57b846;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .designer-credit a:hover {
+            color: #0073e6;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: linear-gradient(135deg, #0073e6, #57b846);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+                backdrop-filter: blur(10px);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lightbox-nav {
+                display: none;
+            }
+            
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .cta-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-content p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .cta-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <img src="mylogo.png" alt="COMBEST Cleaning Services logo" class="logo-img">
+                COMBEST Cleaning Services
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About Us</a></li>
+                <li><a href="/services/">Services</a></li>
+                <li><a href="/gallery/">Gallery</a></li>
+                <li><a href="/careers/">Careers</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Our Cleaning Projects Gallery</h1>
+                <p>Explore our portfolio of successful cleaning projects across Kenya</p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Project Showcase</h2>
+                <p class="section-subtitle">Discover the quality and professionalism of our work through our project gallery</p>
+                
+                <!-- Gallery Filter -->
+                <div class="gallery-filter">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn" data-filter="residential">Residential</button>
+                        <button class="filter-btn" data-filter="commercial">Commercial</button>
+                        <button class="filter-btn" data-filter="pest-control">Pest Control</button>
+                        <button class="filter-btn" data-filter="gardening">Gardening</button>
+                    </div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="gallery-grid" id="gallery-grid">
+                    
+                    <!-- Residential Cleaning Projects -->
+                    <article class="gallery-item" data-category="residential">
+                        <div class="gallery-image has-image">
+                            <img src="images/hero1.jpg" alt="Modern Apartment Cleaning" class="contain-mode loading" style="object-fit: contain;">
+                        </div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Modern Apartment Cleaning</h3>
+                            <p>Complete deep cleaning of a 3-bedroom apartment in Westlands, Nairobi</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="residential">
+                        <div class="gallery-image has-image">
+                            <img src="images/carpet cleaning.jpg" alt="Carpet Cleaning Project" class="contain-mode loading" style="object-fit: contain;">
+                        </div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Carpet Cleaning Project</h3>
+                            <p>Professional carpet cleaning and stain removal in Karen residential home</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="residential">
+                        <div class="gallery-image has-image">
+                            <img src="images/hero2.jpg" alt="Mattress Sanitization" class="contain-mode loading" style="object-fit: contain;">
+                        </div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Mattress Sanitization</h3>
+                            <p>Deep cleaning and sanitization of premium mattresses in Runda</p>
+                        </div>
+                    </article>
+
+                    <!-- Commercial Cleaning Projects -->
+                    <article class="gallery-item" data-category="commercial">
+                        <div class="gallery-image has-image">
+                            <img src="images/commercial.webp" alt="Office Building Cleaning" class="contain-mode loading" style="object-fit: contain;">
+                        </div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Office Building Cleaning</h3>
+                            <p>Daily cleaning services for a 10-story office building in CBD Nairobi</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="commercial">
+                        <div class="gallery-image has-image">
+                            <img src="images/hero3.png" alt="Hospital Cleaning" class="contain-mode loading" style="object-fit: contain;">
+                        </div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Hospital Cleaning</h3>
+                            <p>Specialized medical facility cleaning and sanitization in Thika</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="commercial">
+                        <div class="gallery-image has-image">
+                            <img src="images/hero4.jpeg" alt="Bank Cleaning" class="contain-mode loading" style="object-fit: contain;">
+                        </div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Bank Cleaning Services</h3>
+                            <p>Professional cleaning of banking facilities with security protocols</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="commercial">
+                        <div class="gallery-image has-image">
+                            <img src="images/hero5.jpg" alt="School Cleaning" class="contain-mode loading" style="object-fit: contain;">
+                        </div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>School Cleaning</h3>
+                            <p>Educational facility cleaning and maintenance in Kiambu County</p>
+                        </div>
+                    </article>
+
+                    <!-- Pest Control Projects -->
+                    <article class="gallery-item" data-category="pest-control">
+                        <div class="gallery-image">🐛</div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Termite Treatment</h3>
+                            <p>Complete termite elimination and prevention in residential property</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="pest-control">
+                        <div class="gallery-image">🛏️</div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Bed Bug Extermination</h3>
+                            <p>Professional bed bug treatment and prevention in hotel facility</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="pest-control">
+                        <div class="gallery-image">🐝</div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Bee Removal Service</h3>
+                            <p>Safe bee hive removal and relocation from residential property</p>
+                        </div>
+                    </article>
+
+                    <!-- Gardening Projects -->
+                    <article class="gallery-item" data-category="gardening">
+                        <div class="gallery-image">🌿</div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Landscape Design</h3>
+                            <p>Complete landscape design and implementation in Karen residential home</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="gardening">
+                        <div class="gallery-image">🌳</div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Tree Maintenance</h3>
+                            <p>Professional tree trimming and health assessment in Westlands</p>
+                        </div>
+                    </article>
+
+                    <article class="gallery-item" data-category="gardening">
+                        <div class="gallery-image">🌺</div>
+                        <div class="gallery-overlay">
+                            <span>🔍</span>
+                        </div>
+                        <div class="gallery-info">
+                            <h3>Garden Renovation</h3>
+                            <p>Complete garden makeover and plant care services in Runda</p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Space?</h2>
+                <p>Let our professional team create amazing results for your cleaning needs. Contact us today for a free consultation.</p>
+                <a href="/contact/" class="cta-button">Get Free Quote</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <div class="lightbox-image" id="lightbox-image"></div>
+            <div class="lightbox-info">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-description"></p>
+            </div>
+            <span class="lightbox-nav lightbox-prev" onclick="previousImage()">❮</span>
+            <span class="lightbox-nav lightbox-next" onclick="nextImage()">❯</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📞 0706635218 / 0728359014 / 0717384875</p>
+                <p>📧 combestcleaningservices@gmail.com</p>
+                <p>📍 Westlands, Nairobi</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Mon-Fri: 8AM-6PM | Sat: 8AM-1PM | Sun: Closed</p>
+                <p>Emergency: 24/7</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">🐦</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 COMBEST Cleaning Services. All rights reserved.</p>
+            <div class="designer-credit">
+                Website designed by <a href="https://www.princealex.pro" target="_blank" rel="noopener">Prince Alex Digital</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/254717384875?text=Hello! I'm interested in your cleaning services." class="whatsapp-btn" target="_blank" rel="noopener">
+            <span class="whatsapp-icon">💬</span>
+            <span class="whatsapp-text">We are online. Let's chat!</span>
+        </a>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Gallery Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeIn 0.5s ease';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Functionality
+        let currentImageIndex = 0;
+        let filteredImages = [];
+
+        function openLightbox(index) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDescription = document.getElementById('lightbox-description');
+
+            // Get all visible gallery items
+            const currentGalleryItems = window.galleryItems || document.querySelectorAll('.gallery-item');
+            filteredImages = Array.from(currentGalleryItems).filter(item => 
+                item.style.display !== 'none'
+            );
+
+            currentImageIndex = index;
+            const currentItem = filteredImages[currentImageIndex];
+
+            lightboxImage.textContent = currentItem.querySelector('.gallery-image').textContent;
+            lightboxTitle.textContent = currentItem.querySelector('.gallery-info h3').textContent;
+            lightboxDescription.textContent = currentItem.querySelector('.gallery-info p').textContent;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % filteredImages.length;
+            updateLightboxContent();
+        }
+
+        function previousImage() {
+            currentImageIndex = (currentImageIndex - 1 + filteredImages.length) % filteredImages.length;
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDescription = document.getElementById('lightbox-description');
+
+            const currentItem = filteredImages[currentImageIndex];
+            lightboxImage.textContent = currentItem.querySelector('.gallery-image').textContent;
+            lightboxTitle.textContent = currentItem.querySelector('.gallery-info h3').textContent;
+            lightboxDescription.textContent = currentItem.querySelector('.gallery-info p').textContent;
+        }
+
+        // Add click event listeners to gallery items
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        // Close lightbox when clicking outside
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeLightbox();
+            }
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                switch(e.key) {
+                    case 'Escape':
+                        closeLightbox();
+                        break;
+                    case 'ArrowLeft':
+                        previousImage();
+                        break;
+                    case 'ArrowRight':
+                        nextImage();
+                        break;
+                }
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe gallery items for animation
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Firebase Configuration and Real-time Data Loading
+        (async function() {
+            try {
+                // Import Firebase modules
+                const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
+                const { getFirestore, collection, getDocs, onSnapshot, query, orderBy } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+
+                // Firebase configuration
+                const firebaseConfig = {
+                    apiKey: "AIzaSyC0TdBjLeGimGoYZwLxzC4fQLPBdSzrT0A",
+                    authDomain: "universityweb-19e1e.firebaseapp.com",
+                    projectId: "universityweb-19e1e",
+                    storageBucket: "universityweb-19e1e.firebasestorage.app",
+                    messagingSenderId: "401942926589",
+                    appId: "1:401942926589:web:c98e8d71ae6bd396775a94"
+                };
+
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+
+                // Load gallery items from Firestore
+                function loadGalleryItems() {
+                    console.log('Loading gallery items from Firestore...');
+                    
+                    // Set up real-time listener for gallery items
+                    const galleryQuery = query(collection(db, 'gallery'), orderBy('createdAt', 'desc'));
+                    
+                    onSnapshot(galleryQuery, (snapshot) => {
+                        console.log('Gallery items updated:', snapshot.docs.length);
+                        
+                        if (snapshot.docs.length > 0) {
+                            // Clear existing gallery items
+                            const galleryGrid = document.getElementById('gallery-grid');
+                            
+                            if (galleryGrid) {
+                                // Clear existing content
+                                galleryGrid.innerHTML = '';
+                                
+                                // Add gallery items from Firestore
+                                snapshot.docs.forEach((doc) => {
+                                    const galleryItem = doc.data();
+                                    
+                                    // Only show visible gallery items
+                                    if (galleryItem.status === 'hidden') {
+                                        return; // Skip hidden gallery items
+                                    }
+                                    
+                                    // Create gallery item
+                                    const item = document.createElement('article');
+                                    item.className = 'gallery-item';
+                                    item.setAttribute('data-category', galleryItem.category);
+                                    
+                                    // Create gallery image
+                                    let imageHtml = '';
+                                    if (galleryItem.imageUrl) {
+                                        const displayMode = galleryItem.displayMode || 'contain';
+                                        imageHtml = `<img src="${galleryItem.imageUrl}" alt="${galleryItem.title}" 
+                                                    class="${displayMode}-mode loading" 
+                                                    style="object-fit: ${displayMode};" 
+                                                    onload="this.classList.remove('loading'); this.classList.add('loaded');"
+                                                    onerror="handleImageError(this, '${galleryItem.title}');">`;
+                                    }
+                                    
+                                    item.innerHTML = `
+                                        <div class="gallery-image ${galleryItem.imageUrl ? 'has-image' : ''}">
+                                            ${imageHtml}
+                                            <div style="display: ${galleryItem.imageUrl ? 'none' : 'flex'}; align-items: center; justify-content: center; font-size: 3rem;">📷</div>
+                                        </div>
+                                        <div class="gallery-overlay">
+                                            <span>🔍</span>
+                                        </div>
+                                        <div class="gallery-info">
+                                            <h3>${galleryItem.title}</h3>
+                                            <p>${galleryItem.description}</p>
+                                        </div>
+                                    `;
+                                    
+                                    galleryGrid.appendChild(item);
+                                });
+                                
+                                // Re-initialize gallery functionality
+                                initializeGallery();
+                                
+                                console.log('Gallery items loaded successfully:', snapshot.docs.length);
+                            }
+                        } else {
+                            console.log('No gallery items found in Firestore');
+                        }
+                    }, (error) => {
+                        console.error('Error loading gallery items:', error);
+                    });
+                }
+
+                // Initialize gallery loading
+                loadGalleryItems();
+
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+            }
+        })();
+
+        // Handle image loading errors professionally
+        function handleImageError(img, title) {
+            const container = img.parentElement;
+            container.classList.remove('has-image');
+            container.innerHTML = `
+                <div class="error-placeholder">
+                    <div>🖼️</div>
+                    <small>Image not available<br>"${title}"</small>
+                </div>
+            `;
+        }
+
+        // Add loading classes to existing static images
+        function initializeImageLoading() {
+            const images = document.querySelectorAll('.gallery-image img');
+            images.forEach(img => {
+                if (!img.complete) {
+                    img.classList.add('loading');
+                    img.addEventListener('load', function() {
+                        this.classList.remove('loading');
+                        this.classList.add('loaded');
+                    });
+                    img.addEventListener('error', function() {
+                        const title = this.alt || 'Unknown';
+                        handleImageError(this, title);
+                    });
+                } else {
+                    img.classList.add('loaded');
+                }
+            });
+        }
+
+        // Initialize gallery functionality - Global scope
+        function initializeGallery() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            // Re-initialize filter functionality
+            filterButtons.forEach(button => {
+                // Remove existing event listeners by cloning
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+            });
+
+            // Re-attach filter event listeners
+            const newFilterButtons = document.querySelectorAll('.filter-btn');
+            newFilterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    newFilterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const filter = button.getAttribute('data-filter');
+                    const allGalleryItems = document.querySelectorAll('.gallery-item'); // Fresh list
+
+                    allGalleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            item.style.animation = 'fadeIn 0.5s ease';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Re-initialize lightbox click event listeners
+            const allGalleryItems = document.querySelectorAll('.gallery-item');
+            allGalleryItems.forEach((item, index) => {
+                // Remove existing click listeners by cloning
+                const newItem = item.cloneNode(true);
+                item.parentNode.replaceChild(newItem, item);
+            });
+
+            // Re-attach lightbox event listeners to fresh elements
+            const freshGalleryItems = document.querySelectorAll('.gallery-item');
+            freshGalleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    openLightbox(index);
+                });
+            });
+
+            // Update global galleryItems reference for lightbox functionality
+            window.galleryItems = freshGalleryItems;
+        }
+
+        // Initialize image loading when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeImageLoading();
+            initializeGallery(); // Initialize gallery functionality for static items
+        });
+    </script>
+</body>
+</html>
