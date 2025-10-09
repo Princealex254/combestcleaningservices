@@ -55,7 +55,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000;
+            z-index: 1001;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
@@ -138,6 +138,10 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            padding: 10px;
+            margin: -10px;
+            z-index: 1002;
+            position: relative;
         }
         
         .hamburger span {
@@ -154,7 +158,7 @@
         }
         
         .hero-section {
-            background: linear-gradient(rgba(0,115,230,0.8), rgba(87,184,70,0.8)), url('hero5.jpg');
+            background: linear-gradient(rgba(0,115,230,0.8), rgba(87,184,70,0.8)), url('images/hero5.jpg');
             background-size: cover;
             background-position: center;
             padding: 120px 20px;
@@ -1167,8 +1171,8 @@
                             <!-- Disable captcha -->
                             <input type="hidden" name="_captcha" value="false">
                             
-                            <!-- Redirect to thank-you page after successful submission -->
-                            <input type="hidden" name="_next" value="https://princealex254.github.io/combestcleaningservices/thank-you.html">
+                            <!-- Stay on same page after submission -->
+                            <input type="hidden" name="_next" value="">
                             
                             <!-- Optional: spam protection field (invisible to users) -->
                             <input type="text" name="_honey" style="display:none">
@@ -1360,21 +1364,47 @@
     </div>
 
     <script>
-        // Mobile Navigation Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation Toggle
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+            // Check if elements exist before adding event listeners
+            if (hamburger && navMenu) {
+                console.log('Hamburger menu elements found, adding event listeners');
+                console.log('Hamburger element:', hamburger);
+                console.log('Nav menu element:', navMenu);
+                
+                // Test if hamburger is clickable
+                hamburger.style.pointerEvents = 'auto';
+                hamburger.style.cursor = 'pointer';
+                
+                hamburger.addEventListener('click', (e) => {
+                    console.log('Hamburger clicked!', e);
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
+                // Close mobile menu when clicking on a link
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+                
+                // Fallback: Use event delegation on the document
+                document.addEventListener('click', (e) => {
+                    if (e.target.id === 'hamburger' || e.target.closest('#hamburger')) {
+                        console.log('Hamburger clicked via event delegation');
+                        hamburger.classList.toggle('active');
+                        navMenu.classList.toggle('active');
+                    }
+                });
+            } else {
+                console.error('Hamburger menu elements not found:', { hamburger, navMenu });
+            }
         });
 
         // Form Validation
@@ -1454,8 +1484,8 @@
             }
         });
 
-        // Form submission - FormSubmit handles the actual submission
-        form.addEventListener('submit', (e) => {
+        // Form submission with AJAX to show success message on same page
+        form.addEventListener('submit', async (e) => {
             console.log('Form submission started...');
             console.log('Form action:', form.action);
             console.log('Form method:', form.method);
@@ -1477,24 +1507,58 @@
                 return;
             }
 
-            console.log('Form validation passed, allowing FormSubmit to handle submission');
+            console.log('Form validation passed, submitting via AJAX');
+            e.preventDefault(); // Prevent default form submission
             
             // Show loading state
             const submitBtn = form.querySelector('.submit-btn');
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Sending...';
-                
-                // Reset button after 30 seconds in case FormSubmit fails
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Message';
-                    console.log('Form submission timeout - button reset');
-                }, 30000);
             }
             
-            // Let FormSubmit handle the actual submission
-            // The form will submit normally to FormSubmit endpoint
+            try {
+                // Prepare form data
+                const formData = new FormData(form);
+                
+                // Submit form via fetch API
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                console.log('Form submission response:', response.status);
+                
+                if (response.ok) {
+                    // Success - show success message
+                    console.log('Form submitted successfully');
+                    showSuccessMessage();
+                    
+                    // Clear form
+                    form.reset();
+                    
+                    // Remove any error states
+                    form.querySelectorAll('.form-group').forEach(group => {
+                        group.classList.remove('error');
+                    });
+                    
+                } else {
+                    // Error - show error message
+                    console.error('Form submission failed:', response.status);
+                    showErrorMessage('Failed to send message. Please try again or contact us directly.');
+                }
+                
+            } catch (error) {
+                // Network or other error
+                console.error('Form submission error:', error);
+                showErrorMessage('Network error. Please check your connection and try again.');
+            } finally {
+                // Reset button state
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }
+            }
         });
 
         // Map click handler
