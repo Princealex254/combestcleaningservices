@@ -1551,33 +1551,24 @@
         function updatePositionDropdown(jobDocs) {
             const positionSelect = document.getElementById('position');
             
-            // Get existing static options
-            const staticOptions = [
-                'Residential Cleaning Specialist',
-                'Commercial Cleaning Supervisor', 
-                'Operations Manager',
-                'Pest Control Technician',
-                'Gardening Specialist'
-            ];
-            
-            // Get dynamic job titles
-            const dynamicJobs = jobDocs.map(doc => doc.data().title);
-            
-            // Combine and remove duplicates
-            const allPositions = [...new Set([...staticOptions, ...dynamicJobs])];
-            
-            // Clear existing options except the first one
+            // Clear existing options
             positionSelect.innerHTML = '<option value="">Select a position</option>';
             
-            // Add all positions
-            allPositions.forEach(position => {
-                const option = document.createElement('option');
-                option.value = position;
-                option.textContent = position;
-                positionSelect.appendChild(option);
-            });
+            if (jobDocs && jobDocs.length > 0) {
+                // Get dynamic job titles from visible jobs only
+                const visibleJobs = jobDocs.filter(doc => doc.data().status !== 'hidden');
+                const dynamicJobs = visibleJobs.map(doc => doc.data().title);
+                
+                // Add only visible job positions
+                dynamicJobs.forEach(position => {
+                    const option = document.createElement('option');
+                    option.value = position;
+                    option.textContent = position;
+                    positionSelect.appendChild(option);
+                });
+            }
             
-            // Add "Other" option at the end
+            // Always add "Other" option at the end
             const otherOption = document.createElement('option');
             otherOption.value = 'Other';
             otherOption.textContent = 'Other';
@@ -2094,77 +2085,104 @@
                         if (snapshot.docs.length > 0) {
                             // Clear existing job postings
                             const jobsGrid = document.getElementById('jobs-grid');
+                            const noJobsMessage = document.getElementById('no-jobs-message');
                             
                             if (jobsGrid) {
                                 // Clear existing content
                                 jobsGrid.innerHTML = '';
                                 
-                                // Add job postings from Firestore
-                                snapshot.docs.forEach((doc) => {
-                                    const job = doc.data();
-                                    
-                                    // Only show visible jobs
-                                    if (job.status === 'hidden') {
-                                        return; // Skip hidden jobs
+                                // Filter visible jobs only
+                                const visibleJobs = snapshot.docs.filter(doc => doc.data().status !== 'hidden');
+                                
+                                if (visibleJobs.length > 0) {
+                                    // Hide no jobs message
+                                    if (noJobsMessage) {
+                                        noJobsMessage.style.display = 'none';
                                     }
                                     
-                                    // Create job card
-                                    const card = document.createElement('article');
-                                    card.className = 'job-card';
-                                    card.setAttribute('data-category', job.category);
-                                    
-                                    card.innerHTML = `
-                                        <div class="job-header">
-                                            <div>
-                                                <h3 class="job-title">${job.title}</h3>
-                                                <div class="job-details">
-                                                    <div class="job-detail-item">
-                                                        <span class="job-icon">📍</span>
-                                                        <span>${job.location}</span>
-                                                    </div>
-                                                    <div class="job-detail-item">
-                                                        <span class="job-icon">⏰</span>
-                                                        <span>${job.type}</span>
-                                                    </div>
-                                                    <div class="job-detail-item">
-                                                        <span class="job-icon">💰</span>
-                                                        <span>${job.salary || 'Competitive Salary'}</span>
+                                    // Add job postings from Firestore
+                                    visibleJobs.forEach((doc) => {
+                                        const job = doc.data();
+                                        
+                                        // Create job card
+                                        const card = document.createElement('article');
+                                        card.className = 'job-card';
+                                        card.setAttribute('data-category', job.category);
+                                        
+                                        card.innerHTML = `
+                                            <div class="job-header">
+                                                <div>
+                                                    <h3 class="job-title">${job.title}</h3>
+                                                    <div class="job-details">
+                                                        <div class="job-detail-item">
+                                                            <span class="job-icon">📍</span>
+                                                            <span>${job.location}</span>
+                                                        </div>
+                                                        <div class="job-detail-item">
+                                                            <span class="job-icon">⏰</span>
+                                                            <span>${job.type}</span>
+                                                        </div>
+                                                        <div class="job-detail-item">
+                                                            <span class="job-icon">💰</span>
+                                                            <span>${job.salary || 'Competitive Salary'}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="job-content">
-                                            <div class="job-description">
-                                                <h4>Job Description</h4>
-                                                <p>${job.description}</p>
+                                            <div class="job-content">
+                                                <div class="job-description">
+                                                    <h4>Job Description</h4>
+                                                    <p>${job.description}</p>
+                                                </div>
+                                                <div class="job-requirements">
+                                                    <h4>Requirements</h4>
+                                                    <div style="white-space: pre-line;">${job.requirements}</div>
+                                                </div>
                                             </div>
-                                            <div class="job-requirements">
-                                                <h4>Requirements</h4>
-                                                <div style="white-space: pre-line;">${job.requirements}</div>
-                                            </div>
-                                        </div>
-                                        <button class="apply-btn" onclick="applyForJob('${job.title}')">Apply Now</button>
-                                    `;
+                                            <button class="apply-btn" onclick="applyForJob('${job.title}')">Apply Now</button>
+                                        `;
+                                        
+                                        jobsGrid.appendChild(card);
+                                    });
                                     
-                                    jobsGrid.appendChild(card);
-                                });
-                                
-                                // Update position dropdown with dynamic jobs
-                                updatePositionDropdown(snapshot.docs);
-                                
-                                // Re-initialize job filter functionality with safety check
-                                setTimeout(() => {
-                                    try {
-                                        initializeJobFilters();
-                                    } catch (error) {
-                                        console.error('Error re-initializing job filters:', error);
+                                    // Update position dropdown with visible jobs only
+                                    updatePositionDropdown(visibleJobs);
+                                    
+                                    // Re-initialize job filter functionality with safety check
+                                    setTimeout(() => {
+                                        try {
+                                            initializeJobFilters();
+                                        } catch (error) {
+                                            console.error('Error re-initializing job filters:', error);
+                                        }
+                                    }, 200);
+                                    
+                                    console.log('Visible job postings loaded successfully:', visibleJobs.length);
+                                } else {
+                                    // No visible jobs - show no jobs message
+                                    if (noJobsMessage) {
+                                        jobsGrid.appendChild(noJobsMessage);
+                                        noJobsMessage.style.display = 'block';
                                     }
-                                }, 200);
-                                
-                                console.log('Job postings loaded successfully:', snapshot.docs.length);
+                                    
+                                    // Update position dropdown to only show "Other"
+                                    updatePositionDropdown([]);
+                                }
                             }
                         } else {
                             console.log('No job postings found in Firestore');
+                            // Show no jobs message
+                            const jobsGrid = document.getElementById('jobs-grid');
+                            const noJobsMessage = document.getElementById('no-jobs-message');
+                            
+                            if (jobsGrid && noJobsMessage) {
+                                jobsGrid.innerHTML = '';
+                                jobsGrid.appendChild(noJobsMessage);
+                                noJobsMessage.style.display = 'block';
+                            }
+                            
+                            // Update position dropdown to only show "Other"
+                            updatePositionDropdown([]);
                         }
                     }, (error) => {
                         console.error('Error loading job postings:', error);
