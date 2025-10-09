@@ -1545,11 +1545,16 @@
             positionSelect.appendChild(otherOption);
         }
 
+        // Global variable for no jobs message
+        let noJobsMessage = null;
+
         // Initialize job filter functionality - Global scope
         function initializeJobFilters() {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const jobCards = document.querySelectorAll('.job-card');
-            const noJobsMessage = document.getElementById('no-jobs-message');
+            
+            // Initialize noJobsMessage globally
+            noJobsMessage = document.getElementById('no-jobs-message');
 
             // Remove existing event listeners by cloning buttons
             filterButtons.forEach(button => {
@@ -1562,10 +1567,12 @@
                 const visibleJobs = document.querySelectorAll('.job-card[style*="block"], .job-card:not([style*="none"])');
                 const hasVisibleJobs = visibleJobs.length > 0;
                 
-                if (hasVisibleJobs) {
-                    noJobsMessage.style.display = 'none';
-                } else {
-                    noJobsMessage.style.display = 'block';
+                if (noJobsMessage) {
+                    if (hasVisibleJobs) {
+                        noJobsMessage.style.display = 'none';
+                    } else {
+                        noJobsMessage.style.display = 'block';
+                    }
                 }
             }
 
