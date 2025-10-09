@@ -527,6 +527,26 @@
             transform: none;
             box-shadow: none;
         }
+
+        .submit-btn .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        .submit-btn:disabled .spinner {
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         
         .success-message {
             background: #d4edda;
@@ -1344,7 +1364,10 @@
                             <div class="error-message">Please upload your CV/Resume</div>
                         </div>
                         
-                        <button type="submit" class="submit-btn">Submit Application</button>
+                        <button type="submit" class="submit-btn">
+                            <span class="spinner"></span>
+                            <span class="btn-text">Submit Application</span>
+                        </button>
 
                         <!-- Success Message - Near Submit Button -->
                         <div class="application-success-message" id="application-success-message">
@@ -1356,8 +1379,12 @@
                             <p>Thank you for applying! We've received your application and will review it carefully. If your qualifications match our requirements, we'll contact you within 3-5 business days to discuss the next steps.</p>
                             <div class="success-footer">
                                 <small>📧 You should receive a confirmation email shortly</small>
-                                <div class="success-timer" id="success-timer">
-                                    <small>This message will disappear in <span id="success-countdown">20</span> seconds</small>
+                                <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(195, 230, 203, 0.5);">
+                                    <small style="color: #0a4622; font-size: 12px;">
+                                        <strong>Need immediate assistance?</strong><br>
+                                        📞 Call us: +254 706 635 218 / +254 728 359 014<br>
+                                        📧 Email: careers@combestcleaning.co.ke
+                                    </small>
                                 </div>
                             </div>
                         </div>
@@ -1626,7 +1653,6 @@
         function showApplicationSuccess() {
             const successMessage = document.getElementById('application-success-message');
             const errorMessage = document.getElementById('application-error-message');
-            const countdownElement = document.getElementById('success-countdown');
             
             // Hide error message if showing
             errorMessage.classList.remove('show');
@@ -1639,45 +1665,10 @@
                 behavior: 'smooth',
                 block: 'nearest'
             });
-            
-            // Start countdown timer
-            let timeLeft = 20;
-            countdownElement.textContent = timeLeft;
-            
-            const countdownInterval = setInterval(() => {
-                timeLeft--;
-                countdownElement.textContent = timeLeft;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                }
-            }, 1000);
-            
-            // Auto-hide after 20 seconds
-            setTimeout(() => {
-                clearInterval(countdownInterval);
-                closeApplicationSuccess();
-            }, 20000);
-            
-            // Store interval ID for cleanup if manually closed
-            successMessage.dataset.countdownInterval = countdownInterval;
         }
 
         function closeApplicationSuccess() {
             const successMessage = document.getElementById('application-success-message');
-            
-            // Clear countdown interval if it exists
-            if (successMessage.dataset.countdownInterval) {
-                clearInterval(parseInt(successMessage.dataset.countdownInterval));
-                delete successMessage.dataset.countdownInterval;
-            }
-            
-            // Reset countdown display
-            const countdownElement = document.getElementById('success-countdown');
-            if (countdownElement) {
-                countdownElement.textContent = '20';
-            }
-            
             successMessage.classList.remove('show');
         }
 
@@ -1933,8 +1924,11 @@
 
             if (isFormValid) {
                 const submitBtn = form.querySelector('.submit-btn');
+                const btnText = submitBtn.querySelector('.btn-text');
+                
+                // Show spinner and disable button
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Submitting...';
+                btnText.textContent = 'Submitting...';
 
                 // Get form data
                 const formData = new FormData(form);
@@ -1950,7 +1944,7 @@
                 const cvFile = formData.get('cvUpload');
                 
                 console.log('📝 Form Data:', {
-                    fullName, email, phone, position, experience, availability
+                    fullName, email, phone, position, experience, availability, coverLetter: coverLetter.substring(0, 50) + '...'
                 });
 
                 // Set the _next parameter to current page URL to prevent redirect
@@ -1995,7 +1989,7 @@
                 
                 // Reset button
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Application';
+                btnText.textContent = 'Submit Application';
             }
         });
 
@@ -2035,6 +2029,125 @@
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
+
+        // Firebase Configuration and Real-time Data Loading for Job Postings
+        (async function() {
+            try {
+                // Import Firebase modules
+                const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
+                const { getFirestore, collection, getDocs, onSnapshot, query, orderBy } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
+
+                // Firebase configuration
+                const firebaseConfig = {
+                    apiKey: "AIzaSyC0TdBjLeGimGoYZwLxzC4fQLPBdSzrT0A",
+                    authDomain: "universityweb-19e1e.firebaseapp.com",
+                    projectId: "universityweb-19e1e",
+                    storageBucket: "universityweb-19e1e.firebasestorage.app",
+                    messagingSenderId: "401942926589",
+                    appId: "1:401942926589:web:c98e8d71ae6bd396775a94"
+                };
+
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                const db = getFirestore(app);
+
+                // Load job postings from Firestore
+                function loadJobPostings() {
+                    console.log('Loading job postings from Firestore...');
+                    
+                    // Set up real-time listener for job postings
+                    const jobsQuery = query(collection(db, 'jobs'), orderBy('createdAt', 'desc'));
+                    
+                    onSnapshot(jobsQuery, (snapshot) => {
+                        console.log('Job postings updated:', snapshot.docs.length);
+                        
+                        if (snapshot.docs.length > 0) {
+                            // Clear existing job postings
+                            const jobsGrid = document.getElementById('jobs-grid');
+                            
+                            if (jobsGrid) {
+                                // Clear existing content
+                                jobsGrid.innerHTML = '';
+                                
+                                // Add job postings from Firestore
+                                snapshot.docs.forEach((doc) => {
+                                    const job = doc.data();
+                                    
+                                    // Only show visible jobs
+                                    if (job.status === 'hidden') {
+                                        return; // Skip hidden jobs
+                                    }
+                                    
+                                    // Create job card
+                                    const card = document.createElement('article');
+                                    card.className = 'job-card';
+                                    card.setAttribute('data-category', job.category);
+                                    
+                                    card.innerHTML = `
+                                        <div class="job-header">
+                                            <div>
+                                                <h3 class="job-title">${job.title}</h3>
+                                                <div class="job-details">
+                                                    <div class="job-detail-item">
+                                                        <span class="job-icon">📍</span>
+                                                        <span>${job.location}</span>
+                                                    </div>
+                                                    <div class="job-detail-item">
+                                                        <span class="job-icon">⏰</span>
+                                                        <span>${job.type}</span>
+                                                    </div>
+                                                    <div class="job-detail-item">
+                                                        <span class="job-icon">💰</span>
+                                                        <span>${job.salary || 'Competitive Salary'}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="job-content">
+                                            <div class="job-description">
+                                                <h4>Job Description</h4>
+                                                <p>${job.description}</p>
+                                            </div>
+                                            <div class="job-requirements">
+                                                <h4>Requirements</h4>
+                                                <div style="white-space: pre-line;">${job.requirements}</div>
+                                            </div>
+                                        </div>
+                                        <button class="apply-btn" onclick="applyForJob('${job.title}')">Apply Now</button>
+                                    `;
+                                    
+                                    jobsGrid.appendChild(card);
+                                });
+                                
+                                // Update position dropdown with dynamic jobs
+                                updatePositionDropdown(snapshot.docs);
+                                
+                                // Re-initialize job filter functionality with safety check
+                                setTimeout(() => {
+                                    try {
+                                        initializeJobFilters();
+                                    } catch (error) {
+                                        console.error('Error re-initializing job filters:', error);
+                                    }
+                                }, 200);
+                                
+                                console.log('Job postings loaded successfully:', snapshot.docs.length);
+                            }
+                        } else {
+                            console.log('No job postings found in Firestore');
+                        }
+                    }, (error) => {
+                        console.error('Error loading job postings:', error);
+                    });
+                }
+
+                // Initialize job postings loading
+                loadJobPostings();
+
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+            }
+        })();
 
     </script>
 </body>
