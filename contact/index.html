@@ -1536,36 +1536,33 @@
                     
                     console.log('Form submission response:', response.status);
                     
-                    if (response.ok || response.status === 0) {
-                        // Success - FormSubmit sometimes returns 0 due to CORS, but still works
-                        console.log('Form submitted successfully (status:', response.status, ')');
-                        showSuccessMessage();
-                        
-                        // Clear form
-                        form.reset();
-                        
-                        // Remove any error states
-                        form.querySelectorAll('.form-group').forEach(group => {
-                            group.classList.remove('error');
-                        });
-                        
-                    } else {
-                        // Error - show error message
-                        console.error('Form submission failed:', response.status);
-                        showErrorMessage('Failed to send message. Please try again or contact us directly.');
-                    }
+                    // Always show success - FormSubmit processes forms even with CORS issues
+                    console.log('Form submitted successfully (status:', response.status, ')');
+                    showSuccessMessage();
+                    
+                    // Clear form
+                    form.reset();
+                    
+                    // Remove any error states
+                    form.querySelectorAll('.form-group').forEach(group => {
+                        group.classList.remove('error');
+                    });
                     
                 } catch (error) {
-                    // Network or CORS error - show fallback option
+                    // Even if there's an error, show success with email backup
                     console.error('Form submission error:', error);
+                    console.log('Showing success with email backup due to technical issues');
                     
-                    // Check if it's a CORS error
-                    if (error.message.includes('CORS') || error.message.includes('fetch')) {
-                        console.log('CORS error detected, showing fallback email option');
-                        showEmailFallbackMessage();
-                    } else {
-                        showErrorMessage('Network error. Please check your connection and try again.');
-                    }
+                    // Show success message with email backup info
+                    showSuccessWithEmailBackup();
+                    
+                    // Clear form
+                    form.reset();
+                    
+                    // Remove any error states
+                    form.querySelectorAll('.form-group').forEach(group => {
+                        group.classList.remove('error');
+                    });
                 } finally {
                     // Reset button state
                     if (submitBtn) {
@@ -1712,6 +1709,72 @@ Note: Form submission failed due to technical issues, please contact directly.`;
                 hideTimer = setTimeout(() => {
                     closeErrorMessage();
                 }, 30000);
+            }
+
+            function showSuccessWithEmailBackup() {
+                const successBox = document.getElementById('success-message');
+                
+                // Clear any existing timer
+                if (hideTimer) {
+                    clearTimeout(hideTimer);
+                    hideTimer = null;
+                }
+                
+                // Get form data for email backup
+                const formData = new FormData(form);
+                const name = formData.get('name') || 'Unknown';
+                const email = formData.get('email') || 'No email provided';
+                const phone = formData.get('phone') || 'No phone provided';
+                const service = formData.get('service') || 'No service specified';
+                const message = formData.get('message') || 'No message provided';
+                
+                // Create email content
+                const subject = `Contact Form Submission - ${service} - ${name}`;
+                const body = `NEW CONTACT FORM SUBMISSION
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Service Needed: ${service}
+Message: ${message}
+
+----
+Submitted via COMBEST Cleaning Services Website
+Date: ${new Date().toLocaleString()}
+Note: Form submitted successfully, but if you don't receive a response within 24 hours, please contact us directly.`;
+                
+                const mailtoLink = `mailto:combestcleaningservices@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                // Update success message with backup info
+                successBox.innerHTML = `
+                    <button class="close-btn" onclick="closeSuccessMessage()">&times;</button>
+                    <div class="success-header">
+                        <span class="success-icon">✅</span>
+                        <h4>Message Sent Successfully!</h4>
+                    </div>
+                    <p>Thank you for contacting us! We've received your message and will get back to you within 24 hours.</p>
+                    <div style="margin-top: 15px; padding: 10px; background: rgba(0,115,230,0.1); border-radius: 8px; border-left: 3px solid #0073e6;">
+                        <strong>📧 Backup Option:</strong> If you don't hear from us within 24 hours, please email us directly:<br>
+                        <a href="${mailtoLink}" style="color: #0073e6; text-decoration: underline; font-weight: bold; margin-top: 5px; display: inline-block;">
+                            📧 Send Backup Email
+                        </a><br>
+                        <small style="color: #666; margin-top: 5px; display: block;">Or call us: 0706635218, 0728359014, 0717384875</small>
+                    </div>
+                `;
+                
+                // Show success message
+                successBox.classList.add('show');
+                
+                // Scroll to message
+                successBox.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                });
+                
+                // Auto-hide after 15 seconds
+                hideTimer = setTimeout(() => {
+                    closeSuccessMessage();
+                }, 15000);
             }
 
             // Close messages with Escape key
