@@ -1255,7 +1255,13 @@
                     <div class="success-message" id="success-message">
                         Thank you for your application! We'll review your application and contact you within 3-5 business days.
                     </div>
-                    <form id="application-form">
+                    <form id="application-form" action="https://formsubmit.co/combestcleaningservices@gmail.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Job Application - COMBEST Cleaning Services">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="">
+                        
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">First Name *</label>
@@ -1907,222 +1913,12 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         }
 
-        // Firebase success message function
-        function showFirebaseSuccessMessage(fullName, email, mailtoLink, cvFile) {
-            console.log('✅ Form submitted successfully to Firebase!');
-            
-            const successMessage = `
-                <div style="background: linear-gradient(135deg, #d4edda, #c3e6cb); border: 2px solid #28a745; border-radius: 12px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);">
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <span style="font-size: 32px; animation: bounce 0.6s ease;">🎉</span>
-                        <div>
-                            <h3 style="margin: 0; color: #155724; font-size: 20px;">Application Submitted Successfully!</h3>
-                            <p style="margin: 5px 0 0 0; color: #155724; font-size: 14px;">Thank you, ${fullName}!</p>
-                        </div>
-                    </div>
-                    
-                    <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-                        <div style="text-align: center;">
-                            <p style="margin: 0; color: #333; line-height: 1.6; font-size: 16px;">
-                                Your application has been received successfully. We will process your application within two weeks and get back to you via email.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 6px; padding: 12px; text-align: center;">
-                        <p style="margin: 0; color: #0c5460; font-size: 14px;">
-                            <strong>📧 We'll contact you at:</strong> ${email || 'the email you provided'}
-                        </p>
-                    </div>
-                </div>
-            `;
-            
-            insertSuccessMessage(successMessage);
-        }
 
-        // Email fallback message function
-        function showEmailFallbackMessage(fullName, mailtoLink, cvFile) {
-            console.log('📧 Using email fallback method...');
-            
-            const successMessage = `
-                <div style="background: linear-gradient(135deg, #fff3cd, #ffeaa7); border: 2px solid #ffc107; border-radius: 12px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(255, 193, 7, 0.2);">
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <span style="font-size: 32px;">⚠️</span>
-                        <div>
-                            <h3 style="margin: 0; color: #856404; font-size: 20px;">Application Ready to Send</h3>
-                            <p style="margin: 5px 0 0 0; color: #856404; font-size: 14px;">Thank you, ${fullName}!</p>
-                        </div>
-                    </div>
-                    
-                    <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-                        <div style="text-align: center;">
-                            <p style="margin: 0 0 20px 0; color: #333; line-height: 1.6; font-size: 16px;">
-                                Please click the button below to send your application via email. We will process your application within two weeks and get back to you.
-                            </p>
-                            
-                            <a href="${mailtoLink}" 
-                               style="background: linear-gradient(135deg, #0073e6, #57b846); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; font-size: 16px; box-shadow: 0 4px 12px rgba(0, 115, 230, 0.3); transition: all 0.3s ease;"
-                               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(0, 115, 230, 0.4)'"
-                               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 115, 230, 0.3)'">
-                                📧 Send Application via Email
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #d1ecf1; border: 1px solid #bee5eb; border-radius: 6px; padding: 12px; text-align: center;">
-                        <p style="margin: 0; color: #0c5460; font-size: 14px;">
-                            <strong>📧 We'll contact you at the email you provided</strong>
-                        </p>
-                    </div>
-                </div>
-            `;
-            
-            insertSuccessMessage(successMessage);
-        }
-
-        // Helper function to insert success message
-        function insertSuccessMessage(messageHTML) {
-            const form = document.getElementById('application-form');
-            form.insertAdjacentHTML('beforebegin', messageHTML);
-            
-            const successDiv = form.previousElementSibling;
-            successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            setTimeout(() => {
-                if (successDiv && successDiv.parentNode) {
-                    successDiv.remove();
-                }
-            }, 30000);
-        }
-
-        // Simple success message function (kept for compatibility)
-        function showSimpleSuccessMessage(fullName, mailtoLink, cvFile) {
-            console.log('✅ Form submitted successfully!');
-            
-            // Create success message
-            const successMessage = `
-                <div style="background: linear-gradient(135deg, #d4edda, #c3e6cb); border: 2px solid #28a745; border-radius: 12px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);">
-                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                        <span style="font-size: 32px; animation: bounce 0.6s ease;">🎉</span>
-                        <div>
-                            <h3 style="margin: 0; color: #155724; font-size: 20px;">Application Submitted Successfully!</h3>
-                            <p style="margin: 5px 0 0 0; color: #155724; font-size: 14px;">Thank you, ${fullName}!</p>
-                        </div>
-                    </div>
-                    
-                    <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
-                        <h4 style="margin: 0 0 15px 0; color: #155724; font-size: 16px;">📧 Next Steps:</h4>
-                        <p style="margin: 0 0 15px 0; color: #333; line-height: 1.6;">
-                            Your application has been prepared and is ready to send. Click the button below to open your email client with all your details pre-filled.
-                        </p>
-                        
-                        <div style="text-align: center; margin-bottom: 15px;">
-                            <a href="${mailtoLink}" 
-                               style="background: linear-gradient(135deg, #0073e6, #57b846); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; font-size: 16px; box-shadow: 0 4px 12px rgba(0, 115, 230, 0.3); transition: all 0.3s ease;"
-                               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(0, 115, 230, 0.4)'"
-                               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 115, 230, 0.3)'">
-                                📧 Send Application via Email
-                            </a>
-                        </div>
-                        
-                        ${cvFile && cvFile.size > 0 ? `
-                        <div style="background: #e8f5e8; border: 1px solid #c3e6cb; border-radius: 6px; padding: 12px; margin-top: 15px;">
-                            <p style="margin: 0; color: #155724; font-size: 14px;">
-                                <strong>📎 CV File:</strong> ${cvFile.name} (${formatFileSize(cvFile.size)})
-                                <br><em>Note: You'll need to attach your CV file manually to the email.</em>
-                            </p>
-                        </div>
-                        ` : ''}
-                    </div>
-                    
-                    <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 6px; padding: 12px; text-align: center;">
-                        <p style="margin: 0; color: #856404; font-size: 14px;">
-                            <strong>Alternative:</strong> You can also contact us directly at 
-                            <a href="mailto:careers@combestcleaning.co.ke" style="color: #856404; font-weight: bold;">careers@combestcleaning.co.ke</a>
-                        </p>
-                    </div>
-                </div>
-            `;
-            
-            // Insert success message before the form
-            const form = document.getElementById('application-form');
-            form.insertAdjacentHTML('beforebegin', successMessage);
-            
-            // Scroll to the message
-            const successDiv = form.previousElementSibling;
-            successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Auto-remove after 30 seconds
-            setTimeout(() => {
-                if (successDiv && successDiv.parentNode) {
-                    successDiv.remove();
-                }
-            }, 30000);
-        }
-
-        // Fallback submission function for CORS issues
-        function tryFallbackSubmission(formData) {
-            console.log('📧 Using fallback submission method...');
-            
-            // Create email content
-            const firstName = formData.get('firstName') || '';
-            const lastName = formData.get('lastName') || '';
-            const fullName = `${firstName} ${lastName}`.trim();
-            const email = formData.get('email') || '';
-            const phone = formData.get('phone') || '';
-            const position = formData.get('position') || '';
-            const experience = formData.get('experience') || '';
-            const coverLetter = formData.get('coverLetter') || '';
-            
-            // Create mailto link
-            const subject = `Job Application - ${position}`;
-            const body = `Name: ${fullName}
-Email: ${email}
-Phone: ${phone}
-Position: ${position}
-Experience: ${experience}
-
-Cover Letter:
-${coverLetter}
-
-Note: This application was submitted via the website form.`;
-            
-            const mailtoLink = `mailto:careers@combestcleaning.co.ke?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Show fallback message
-            const fallbackMessage = `
-                <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 20px; margin: 20px 0;">
-                    <h4 style="color: #856404; margin: 0 0 10px 0;">⚠️ CORS Error Detected</h4>
-                    <p style="margin: 0 0 15px 0; color: #856404;">
-                        Due to browser security restrictions, the form cannot submit directly. 
-                        Please click the button below to open your email client with a pre-filled application.
-                    </p>
-                    <a href="${mailtoLink}" 
-                       style="background: #0073e6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
-                        📧 Open Email Client
-                    </a>
-                    <p style="margin: 15px 0 0 0; font-size: 0.9em; color: #666;">
-                        Or contact us directly at: <strong>careers@combestcleaning.co.ke</strong>
-                    </p>
-                </div>
-            `;
-            
-            // Insert fallback message before the form
-            const form = document.getElementById('application-form');
-            form.insertAdjacentHTML('beforebegin', fallbackMessage);
-            
-            // Scroll to the message
-            const fallbackDiv = form.previousElementSibling;
-            fallbackDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            console.log('✅ Fallback submission method activated');
-        }
-
-        // Form submission - Try Firebase first, fallback to email
+        // Form submission using FormSubmit (similar to contact form)
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            console.log('🚀 Form submission started');
+            console.log('🚀 Job application form submission started');
             
             const fields = form.querySelectorAll('input[required], select[required], textarea[required]');
             let isFormValid = true;
@@ -2157,114 +1953,45 @@ Note: This application was submitted via the website form.`;
                     fullName, email, phone, position, experience, availability
                 });
 
-                // Try to save to Firebase first
-                let firebaseSuccess = false;
+                // Set the _next parameter to current page URL to prevent redirect
+                formData.set('_next', window.location.href);
+
                 try {
-                    console.log('🔥 Attempting Firebase save...');
+                    console.log('📧 Submitting to FormSubmit...');
                     
-                    // Import Firebase modules
-                    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
-                    const { getFirestore, collection, addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
-                    const { getStorage, ref, uploadBytes, getDownloadURL } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js");
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        redirect: 'manual'
+                    });
 
-                    const firebaseConfig = {
-                        apiKey: "AIzaSyC0TdBjLeGimGoYZwLxzC4fQLPBdSzrT0A",
-                        authDomain: "universityweb-19e1e.firebaseapp.com",
-                        projectId: "universityweb-19e1e",
-                        storageBucket: "universityweb-19e1e.firebasestorage.app",
-                        messagingSenderId: "401942926589",
-                        appId: "1:401942926589:web:c98e8d71ae6bd396775a94"
-                    };
+                    console.log('📧 FormSubmit response:', response.status);
 
-                    const app = initializeApp(firebaseConfig);
-                    const db = getFirestore(app);
-                    const storage = getStorage(app);
-                    
-                    let cvFileUrl = null;
-                    let cvFileName = 'No file uploaded';
-                    
-                    // Upload CV file to Firebase Storage if provided
-                    if (cvFile && cvFile.size > 0) {
-                        console.log('📎 Uploading CV file:', cvFile.name, 'Size:', cvFile.size);
+                    // FormSubmit returns status 0 for CORS, but still processes the email
+                    if (response.ok || response.status === 0) {
+                        console.log('✅ Application submitted successfully!');
+                        showApplicationSuccess();
                         
-                        const timestamp = Date.now();
-                        const sanitizedName = fullName.replace(/[^a-zA-Z0-9]/g, '_');
-                        const fileExtension = cvFile.name.split('.').pop();
-                        const uniqueFileName = `cv_${sanitizedName}_${timestamp}.${fileExtension}`;
+                        // Reset form
+                        form.reset();
                         
-                        const storageRef = ref(storage, `applications/cvs/${uniqueFileName}`);
-                        const uploadResult = await uploadBytes(storageRef, cvFile);
-                        cvFileUrl = await getDownloadURL(uploadResult.ref);
-                        cvFileName = cvFile.name;
-                        
-                        console.log('✅ CV uploaded successfully:', cvFileUrl);
+                        // Hide file preview if it exists
+                        const cvPreview = document.getElementById('cvPreview');
+                        if (cvPreview) {
+                            cvPreview.classList.remove('show');
+                        }
+                    } else {
+                        console.log('❌ FormSubmit failed, showing fallback');
+                        showApplicationError('Failed to submit application. Please try again or contact us directly.');
                     }
                     
-                    // Save application data to Firestore
-                    const applicationData = {
-                        name: fullName,
-                        firstName: firstName,
-                        lastName: lastName,
-                        email: email,
-                        phone: phone,
-                        position: position,
-                        experience: experience,
-                        availability: availability,
-                        coverLetter: coverLetter,
-                        cvFileName: cvFileName,
-                        cvFileUrl: cvFileUrl,
-                        cvFileSize: cvFile ? cvFile.size : 0,
-                        createdAt: serverTimestamp(),
-                        status: 'pending',
-                        source: 'careers-page'
-                    };
-
-                    const docRef = await addDoc(collection(db, 'applications'), applicationData);
-                    
-                    console.log('✅ Application saved to Firebase successfully!');
-                    console.log('Document ID:', docRef.id);
-                    firebaseSuccess = true;
-                    
                 } catch (error) {
-                    console.error('❌ Firebase save failed:', error);
-                    firebaseSuccess = false;
+                    console.error('❌ Submission error:', error);
+                    showApplicationError('Network error. Please try again or contact us directly.');
                 }
-
-                // Create email content for fallback/notification
-                const subject = `Job Application - ${position} - ${fullName}`;
-                const body = `NEW JOB APPLICATION RECEIVED
-
-Personal Information:
-• Name: ${fullName}
-• Email: ${email}
-• Phone: ${phone}
-
-Application Details:
-• Position Applied For: ${position}
-• Years of Experience: ${experience}
-• Availability: ${availability}
-
-Cover Letter:
-${coverLetter}
-
-CV/Resume: ${cvFile && cvFile.size > 0 ? cvFile.name + ' (' + formatFileSize(cvFile.size) + ')' : 'No file uploaded'}
-
----
-Submitted via COMBEST Cleaning Services Website
-Date: ${new Date().toLocaleString()}
-Firebase Save: ${firebaseSuccess ? 'Success' : 'Failed - Check admin panel'}`;
-
-                const mailtoLink = `mailto:careers@combestcleaning.co.ke?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                
-                // Show success message
-                if (firebaseSuccess) {
-                    showFirebaseSuccessMessage(fullName, email, mailtoLink, cvFile);
-                } else {
-                    showEmailFallbackMessage(fullName, mailtoLink, cvFile);
-                }
-                
-                // Reset form
-                form.reset();
                 
                 // Reset button
                 submitBtn.disabled = false;
@@ -2309,124 +2036,6 @@ Firebase Save: ${firebaseSuccess ? 'Success' : 'Failed - Check admin panel'}`;
             observer.observe(card);
         });
 
-        // Firebase Configuration and Real-time Data Loading
-        (async function() {
-            try {
-                // Import Firebase modules
-                const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
-                const { getFirestore, collection, getDocs, onSnapshot, query, orderBy } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js");
-
-                // Firebase configuration
-                const firebaseConfig = {
-                    apiKey: "AIzaSyC0TdBjLeGimGoYZwLxzC4fQLPBdSzrT0A",
-                    authDomain: "universityweb-19e1e.firebaseapp.com",
-                    projectId: "universityweb-19e1e",
-                    storageBucket: "universityweb-19e1e.firebasestorage.app",
-                    messagingSenderId: "401942926589",
-                    appId: "1:401942926589:web:c98e8d71ae6bd396775a94"
-                };
-
-                // Initialize Firebase
-                const app = initializeApp(firebaseConfig);
-                const db = getFirestore(app);
-
-                // Load job postings from Firestore
-                function loadJobPostings() {
-                    console.log('Loading job postings from Firestore...');
-                    
-                    // Set up real-time listener for job postings
-                    const jobsQuery = query(collection(db, 'jobs'), orderBy('createdAt', 'desc'));
-                    
-                    onSnapshot(jobsQuery, (snapshot) => {
-                        console.log('Job postings updated:', snapshot.docs.length);
-                        
-                        if (snapshot.docs.length > 0) {
-                            // Clear existing job postings
-                            const jobsGrid = document.getElementById('jobs-grid');
-                            
-                            if (jobsGrid) {
-                                // Clear existing content
-                                jobsGrid.innerHTML = '';
-                                
-                                // Add job postings from Firestore
-                                snapshot.docs.forEach((doc) => {
-                                    const job = doc.data();
-                                    
-                                    // Only show visible jobs
-                                    if (job.status === 'hidden') {
-                                        return; // Skip hidden jobs
-                                    }
-                                    
-                                    // Create job card
-                                    const card = document.createElement('article');
-                                    card.className = 'job-card';
-                                    card.setAttribute('data-category', job.category);
-                                    
-                                    card.innerHTML = `
-                                        <div class="job-header">
-                                            <div>
-                                                <h3 class="job-title">${job.title}</h3>
-                                                <div class="job-details">
-                                                    <div class="job-detail-item">
-                                                        <span class="job-icon">📍</span>
-                                                        <span>${job.location}</span>
-                                                    </div>
-                                                    <div class="job-detail-item">
-                                                        <span class="job-icon">⏰</span>
-                                                        <span>${job.type}</span>
-                                                    </div>
-                                                    <div class="job-detail-item">
-                                                        <span class="job-icon">💰</span>
-                                                        <span>${job.salary || 'Competitive Salary'}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="job-content">
-                                            <div class="job-description">
-                                                <h4>Job Description</h4>
-                                                <p>${job.description}</p>
-                                            </div>
-                                            <div class="job-requirements">
-                                                <h4>Requirements</h4>
-                                                <div style="white-space: pre-line;">${job.requirements}</div>
-                                            </div>
-                                        </div>
-                                        <button class="apply-btn" onclick="applyForJob('${job.title}')">Apply Now</button>
-                                    `;
-                                    
-                                    jobsGrid.appendChild(card);
-                                });
-                                
-                                // Update position dropdown with dynamic jobs
-                                updatePositionDropdown(snapshot.docs);
-                                
-                                // Re-initialize job filter functionality with safety check
-                                setTimeout(() => {
-                                    try {
-                                        initializeJobFilters();
-                                    } catch (error) {
-                                        console.error('Error re-initializing job filters:', error);
-                                    }
-                                }, 200);
-                                
-                                console.log('Job postings loaded successfully:', snapshot.docs.length);
-                            }
-                        } else {
-                            console.log('No job postings found in Firestore');
-                        }
-                    }, (error) => {
-                        console.error('Error loading job postings:', error);
-                    });
-                }
-
-                // Initialize job postings loading
-                loadJobPostings();
-
-            } catch (error) {
-                console.error('Firebase initialization error:', error);
-            }
-        })();
     </script>
 </body>
 </html>
