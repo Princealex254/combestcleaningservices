@@ -1388,8 +1388,7 @@
         const form = document.getElementById('contact-form-element');
         if (!form) {
             console.error('Contact form not found');
-            return;
-        }
+        } else {
         
         // Debug form configuration
         console.log('Form found:', form);
@@ -1766,6 +1765,7 @@ Note: Form submitted successfully, but if you don't receive a response within 24
                 }
             });
         });
+        }
 
         // Map click handler
         function openGoogleMaps() {
