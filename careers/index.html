@@ -1553,8 +1553,12 @@
             const filterButtons = document.querySelectorAll('.filter-btn');
             const jobCards = document.querySelectorAll('.job-card');
             
-            // Initialize noJobsMessage globally
+            // Initialize noJobsMessage globally with error checking
             noJobsMessage = document.getElementById('no-jobs-message');
+            if (!noJobsMessage) {
+                console.warn('No jobs message element not found. Skipping filter initialization.');
+                return;
+            }
 
             // Remove existing event listeners by cloning buttons
             filterButtons.forEach(button => {
@@ -1564,15 +1568,21 @@
 
             // Function to check if any jobs are visible
             function checkVisibleJobs() {
-                const visibleJobs = document.querySelectorAll('.job-card[style*="block"], .job-card:not([style*="none"])');
-                const hasVisibleJobs = visibleJobs.length > 0;
-                
-                if (noJobsMessage) {
-                    if (hasVisibleJobs) {
-                        noJobsMessage.style.display = 'none';
+                try {
+                    const visibleJobs = document.querySelectorAll('.job-card[style*="block"], .job-card:not([style*="none"])');
+                    const hasVisibleJobs = visibleJobs.length > 0;
+                    
+                    if (noJobsMessage && noJobsMessage.style) {
+                        if (hasVisibleJobs) {
+                            noJobsMessage.style.display = 'none';
+                        } else {
+                            noJobsMessage.style.display = 'block';
+                        }
                     } else {
-                        noJobsMessage.style.display = 'block';
+                        console.warn('No jobs message element not available for display update');
                     }
+                } catch (error) {
+                    console.error('Error in checkVisibleJobs:', error);
                 }
             }
 
@@ -1753,8 +1763,13 @@
             });
         });
 
-        // Initialize job filters for static job cards
-        initializeJobFilters();
+        // Initialize job filters for static job cards - Wait for DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            // Small delay to ensure all elements are rendered
+            setTimeout(() => {
+                initializeJobFilters();
+            }, 100);
+        });
         
         // Function to test "no jobs" message (can be called from browser console)
         window.testNoJobsMessage = function() {
@@ -2386,8 +2401,14 @@ Firebase Save: ${firebaseSuccess ? 'Success' : 'Failed - Check admin panel'}`;
                                 // Update position dropdown with dynamic jobs
                                 updatePositionDropdown(snapshot.docs);
                                 
-                                // Re-initialize job filter functionality
-                                initializeJobFilters();
+                                // Re-initialize job filter functionality with safety check
+                                setTimeout(() => {
+                                    try {
+                                        initializeJobFilters();
+                                    } catch (error) {
+                                        console.error('Error re-initializing job filters:', error);
+                                    }
+                                }, 200);
                                 
                                 console.log('Job postings loaded successfully:', snapshot.docs.length);
                             }
