@@ -1350,7 +1350,22 @@
                         <div class="form-group">
                             <label for="coverLetter">Cover Letter *</label>
                             <textarea id="coverLetter" name="coverLetter" placeholder="Tell us why you want to join COMBEST Cleaning Services and what makes you a great fit for this position..." required></textarea>
-                            <div class="error-message">Please write a cover letter</div>
+                            <div class="error-message">Please write a cover letter or upload a cover letter document</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="coverLetterUpload">Upload Cover Letter Document (Optional)</label>
+                            <input type="file" id="coverLetterUpload" name="coverLetterUpload" accept=".pdf,.doc,.docx,.txt">
+                            <div class="file-info">Accepted formats: PDF, DOC, DOCX, TXT (Max 5MB)</div>
+                            <div class="file-preview" id="coverLetterPreview">
+                                <div class="file-name"></div>
+                                <div class="file-size"></div>
+                            </div>
+                            <div class="form-note">
+                                <small style="color: #666; font-style: italic;">
+                                    💡 Tip: You can either type your cover letter above or upload a document. If you upload a document, it will be used instead of the typed text.
+                                </small>
+                            </div>
                         </div>
                         
                         <div class="form-group">
@@ -1828,7 +1843,14 @@
                     }
                     break;
                 case 'textarea':
-                    if (value.length < 20) {
+                    // Check if cover letter textarea is empty and no file is uploaded
+                    if (field.id === 'coverLetter') {
+                        const coverLetterFile = document.getElementById('coverLetterUpload');
+                        if (value.length < 20 && (!coverLetterFile.files || coverLetterFile.files.length === 0)) {
+                            isValid = false;
+                            errorText = 'Please write a cover letter or upload a cover letter document';
+                        }
+                    } else if (value.length < 20) {
                         isValid = false;
                         errorText = 'Please enter at least 20 characters';
                     }
@@ -1840,14 +1862,26 @@
                     } else if (field.files.length > 0) {
                         const file = field.files[0];
                         const maxSize = 5 * 1024 * 1024; // 5MB
-                        const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                        
+                        // Different allowed types for different file inputs
+                        let allowedTypes;
+                        if (field.id === 'coverLetterUpload') {
+                            allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
+                        } else {
+                            allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                        }
                         
                         if (file.size > maxSize) {
                             isValid = false;
                             errorText = 'File size must be less than 5MB';
                         } else if (!allowedTypes.includes(file.type)) {
-                            isValid = false;
-                            errorText = 'Please upload a PDF, DOC, or DOCX file';
+                            if (field.id === 'coverLetterUpload') {
+                                isValid = false;
+                                errorText = 'Please upload a PDF, DOC, DOCX, or TXT file';
+                            } else {
+                                isValid = false;
+                                errorText = 'Please upload a PDF, DOC, or DOCX file';
+                            }
                         }
                     }
                     break;
@@ -1876,6 +1910,15 @@
             if (e.target.type === 'file') {
                 validateField(e.target);
                 showFilePreview(e.target);
+                
+                // If cover letter file is uploaded, clear the textarea requirement
+                if (e.target.id === 'coverLetterUpload' && e.target.files.length > 0) {
+                    const coverLetterTextarea = document.getElementById('coverLetter');
+                    const formGroup = coverLetterTextarea.closest('.form-group');
+                    formGroup.classList.remove('error');
+                    const errorMessage = formGroup.querySelector('.error-message');
+                    errorMessage.textContent = '';
+                }
             }
         });
         
@@ -1941,10 +1984,14 @@
                 const experience = formData.get('experience') || '';
                 const availability = formData.get('availability') || '';
                 const coverLetter = formData.get('coverLetter') || '';
+                const coverLetterFile = formData.get('coverLetterUpload');
                 const cvFile = formData.get('cvUpload');
                 
                 console.log('📝 Form Data:', {
-                    fullName, email, phone, position, experience, availability, coverLetter: coverLetter.substring(0, 50) + '...'
+                    fullName, email, phone, position, experience, availability, 
+                    coverLetter: coverLetter.substring(0, 50) + '...',
+                    coverLetterFile: coverLetterFile ? coverLetterFile.name : 'None',
+                    cvFile: cvFile ? cvFile.name : 'None'
                 });
 
                 // Set the _next parameter to current page URL to prevent redirect
@@ -1972,10 +2019,14 @@
                         // Reset form
                         form.reset();
                         
-                        // Hide file preview if it exists
+                        // Hide file previews if they exist
                         const cvPreview = document.getElementById('cvPreview');
+                        const coverLetterPreview = document.getElementById('coverLetterPreview');
                         if (cvPreview) {
                             cvPreview.classList.remove('show');
+                        }
+                        if (coverLetterPreview) {
+                            coverLetterPreview.classList.remove('show');
                         }
                     } else {
                         console.log('❌ FormSubmit failed, showing fallback');
