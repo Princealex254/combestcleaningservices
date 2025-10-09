@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://combestcleaningservices.pro/sitemap.xml
+
+# Disallow admin area from general crawling (optional)
+Disallow: /admin/
+
+# Allow all other pages
+Allow: /about/
+Allow: /services/
+Allow: /gallery/
+Allow: /careers/
+Allow: /contact/
+
+# Crawl delay (optional - helps prevent overloading server)
+Crawl-delay: 1
