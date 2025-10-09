@@ -1348,24 +1348,14 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="coverLetter">Cover Letter *</label>
-                            <textarea id="coverLetter" name="coverLetter" placeholder="Tell us why you want to join COMBEST Cleaning Services and what makes you a great fit for this position..." required></textarea>
-                            <div class="error-message">Please write a cover letter or upload a cover letter document</div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="coverLetterUpload">Upload Cover Letter Document (Optional)</label>
-                            <input type="file" id="coverLetterUpload" name="coverLetterUpload" accept=".pdf,.doc,.docx,.txt">
+                            <label for="coverLetterUpload">Upload Cover Letter Document *</label>
+                            <input type="file" id="coverLetterUpload" name="coverLetterUpload" accept=".pdf,.doc,.docx,.txt" required>
                             <div class="file-info">Accepted formats: PDF, DOC, DOCX, TXT (Max 5MB)</div>
                             <div class="file-preview" id="coverLetterPreview">
                                 <div class="file-name"></div>
                                 <div class="file-size"></div>
                             </div>
-                            <div class="form-note">
-                                <small style="color: #666; font-style: italic;">
-                                    💡 Tip: You can either type your cover letter above or upload a document. If you upload a document, it will be used instead of the typed text.
-                                </small>
-                            </div>
+                            <div class="error-message">Please upload a cover letter document</div>
                         </div>
                         
                         <div class="form-group">
@@ -1810,7 +1800,13 @@
         function validateField(field) {
             const value = field.value.trim();
             const formGroup = field.closest('.form-group');
-            const errorMessage = formGroup.querySelector('.error-message');
+            const errorMessage = formGroup ? formGroup.querySelector('.error-message') : null;
+            
+            // Return early if no form group or error message element found
+            if (!formGroup || !errorMessage) {
+                console.warn('Form group or error message element not found for field:', field);
+                return true;
+            }
             
             let isValid = true;
             let errorText = '';
@@ -1843,14 +1839,7 @@
                     }
                     break;
                 case 'textarea':
-                    // Check if cover letter textarea is empty and no file is uploaded
-                    if (field.id === 'coverLetter') {
-                        const coverLetterFile = document.getElementById('coverLetterUpload');
-                        if (value.length < 20 && (!coverLetterFile.files || coverLetterFile.files.length === 0)) {
-                            isValid = false;
-                            errorText = 'Please write a cover letter or upload a cover letter document';
-                        }
-                    } else if (value.length < 20) {
+                    if (value.length < 20) {
                         isValid = false;
                         errorText = 'Please enter at least 20 characters';
                     }
@@ -1910,15 +1899,6 @@
             if (e.target.type === 'file') {
                 validateField(e.target);
                 showFilePreview(e.target);
-                
-                // If cover letter file is uploaded, clear the textarea requirement
-                if (e.target.id === 'coverLetterUpload' && e.target.files.length > 0) {
-                    const coverLetterTextarea = document.getElementById('coverLetter');
-                    const formGroup = coverLetterTextarea.closest('.form-group');
-                    formGroup.classList.remove('error');
-                    const errorMessage = formGroup.querySelector('.error-message');
-                    errorMessage.textContent = '';
-                }
             }
         });
         
@@ -1983,13 +1963,11 @@
                 const position = formData.get('position') || '';
                 const experience = formData.get('experience') || '';
                 const availability = formData.get('availability') || '';
-                const coverLetter = formData.get('coverLetter') || '';
                 const coverLetterFile = formData.get('coverLetterUpload');
                 const cvFile = formData.get('cvUpload');
                 
                 console.log('📝 Form Data:', {
                     fullName, email, phone, position, experience, availability, 
-                    coverLetter: coverLetter.substring(0, 50) + '...',
                     coverLetterFile: coverLetterFile ? coverLetterFile.name : 'None',
                     cvFile: cvFile ? cvFile.name : 'None'
                 });
