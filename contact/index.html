@@ -140,7 +140,7 @@
             cursor: pointer;
             padding: 10px;
             margin: -10px;
-            z-index: 1002;
+            z-index: 2001;
             position: relative;
         }
         
@@ -1048,6 +1048,7 @@
             
             .nav-menu.active {
                 left: 0;
+                z-index: 2000;
             }
             
             .hamburger {
@@ -1375,8 +1376,6 @@
             // Check if elements exist before adding event listeners
             if (hamburger && navMenu) {
                 console.log('Hamburger menu elements found, adding event listeners');
-                console.log('Hamburger element:', hamburger);
-                console.log('Nav menu element:', navMenu);
                 
                 // Test if hamburger is clickable
                 hamburger.style.pointerEvents = 'auto';
@@ -1407,166 +1406,258 @@
             } else {
                 console.error('Hamburger menu elements not found:', { hamburger, navMenu });
             }
-        });
 
-        // Form Validation
-        const form = document.getElementById('contact-form-element');
-        if (!form) {
-            console.error('Contact form not found');
-            return;
-        }
-        
-        // Debug form configuration
-        console.log('Form found:', form);
-        console.log('Form action URL:', form.action);
-        console.log('Form method:', form.method);
-        console.log('FormSubmit endpoint configured:', form.action.includes('formsubmit.co'));
-        
-        const successMessage = document.getElementById('success-message');
-        let hideTimer = null;
-
-        function validateField(field) {
-            const value = field.value.trim();
-            const formGroup = field.closest('.form-group');
-            const errorMessage = formGroup.querySelector('.error-message');
+            // Form Validation
+            const form = document.getElementById('contact-form-element');
+            if (!form) {
+                console.error('Contact form not found');
+                return;
+            }
             
-            let isValid = true;
-            let errorText = '';
-
-            switch(field.type) {
-                case 'text':
-                    if (value.length < 2) {
-                        isValid = false;
-                        errorText = 'Please enter at least 2 characters';
-                    }
-                    break;
-                case 'email':
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(value)) {
-                        isValid = false;
-                        errorText = 'Please enter a valid email address';
-                    }
-                    break;
-                case 'tel':
-                    const phoneRegex = /^[0-9+\-\s()]{10,}$/;
-                    if (!phoneRegex.test(value)) {
-                        isValid = false;
-                        errorText = 'Please enter a valid phone number';
-                    }
-                    break;
-                case 'select-one':
-                    if (!value) {
-                        isValid = false;
-                        errorText = 'Please select a service';
-                    }
-                    break;
-                case 'textarea':
-                    if (value.length < 10) {
-                        isValid = false;
-                        errorText = 'Please enter at least 10 characters';
-                    }
-                    break;
-            }
-
-            if (isValid) {
-                formGroup.classList.remove('error');
-                errorMessage.textContent = '';
-            } else {
-                formGroup.classList.add('error');
-                errorMessage.textContent = errorText;
-            }
-
-            return isValid;
-        }
-
-        // Real-time validation
-        form.addEventListener('input', (e) => {
-            if (e.target.matches('input, select, textarea')) {
-                validateField(e.target);
-            }
-        });
-
-        // Form submission with AJAX to show success message on same page
-        form.addEventListener('submit', async (e) => {
-            console.log('Form submission started...');
-            console.log('Form action:', form.action);
+            // Debug form configuration
+            console.log('Form found:', form);
+            console.log('Form action URL:', form.action);
             console.log('Form method:', form.method);
+            console.log('FormSubmit endpoint configured:', form.action.includes('formsubmit.co'));
             
-            const fields = form.querySelectorAll('input[required], select[required], textarea[required]');
-            let isFormValid = true;
+            const successMessage = document.getElementById('success-message');
+            let hideTimer = null;
 
-            // Validate all required fields
-            fields.forEach(field => {
-                if (!validateField(field)) {
-                    isFormValid = false;
-                    console.log('Validation failed for field:', field.name);
+            function validateField(field) {
+                const value = field.value.trim();
+                const formGroup = field.closest('.form-group');
+                const errorMessage = formGroup.querySelector('.error-message');
+                
+                let isValid = true;
+                let errorText = '';
+
+                switch(field.type) {
+                    case 'text':
+                        if (value.length < 2) {
+                            isValid = false;
+                            errorText = 'Please enter at least 2 characters';
+                        }
+                        break;
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(value)) {
+                            isValid = false;
+                            errorText = 'Please enter a valid email address';
+                        }
+                        break;
+                    case 'tel':
+                        const phoneRegex = /^[0-9+\-\s()]{10,}$/;
+                        if (!phoneRegex.test(value)) {
+                            isValid = false;
+                            errorText = 'Please enter a valid phone number';
+                        }
+                        break;
+                    case 'select-one':
+                        if (!value) {
+                            isValid = false;
+                            errorText = 'Please select a service';
+                        }
+                        break;
+                    case 'textarea':
+                        if (value.length < 10) {
+                            isValid = false;
+                            errorText = 'Please enter at least 10 characters';
+                        }
+                        break;
+                }
+
+                if (isValid) {
+                    formGroup.classList.remove('error');
+                    errorMessage.textContent = '';
+                } else {
+                    formGroup.classList.add('error');
+                    errorMessage.textContent = errorText;
+                }
+
+                return isValid;
+            }
+
+            // Real-time validation
+            form.addEventListener('input', (e) => {
+                if (e.target.matches('input, select, textarea')) {
+                    validateField(e.target);
                 }
             });
 
-            if (!isFormValid) {
-                console.log('Form validation failed, preventing submission');
-                e.preventDefault();
-                return;
-            }
+            // Form submission with AJAX to show success message on same page
+            form.addEventListener('submit', async (e) => {
+                console.log('Form submission started...');
+                console.log('Form action:', form.action);
+                console.log('Form method:', form.method);
+                
+                const fields = form.querySelectorAll('input[required], select[required], textarea[required]');
+                let isFormValid = true;
 
-            console.log('Form validation passed, submitting via AJAX');
-            e.preventDefault(); // Prevent default form submission
-            
-            // Show loading state
-            const submitBtn = form.querySelector('.submit-btn');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Sending...';
-            }
-            
-            try {
-                // Prepare form data
-                const formData = new FormData(form);
-                
-                // Add current page URL to prevent FormSubmit redirect
-                formData.append('_next', window.location.href);
-                
-                // Submit form via fetch API
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
+                // Validate all required fields
+                fields.forEach(field => {
+                    if (!validateField(field)) {
+                        isFormValid = false;
+                        console.log('Validation failed for field:', field.name);
                     }
                 });
+
+                if (!isFormValid) {
+                    console.log('Form validation failed, preventing submission');
+                    e.preventDefault();
+                    return;
+                }
+
+                console.log('Form validation passed, submitting via AJAX');
+                e.preventDefault(); // Prevent default form submission
                 
-                console.log('Form submission response:', response.status);
+                // Show loading state
+                const submitBtn = form.querySelector('.submit-btn');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Sending...';
+                }
                 
-                if (response.ok) {
-                    // Success - show success message
-                    console.log('Form submitted successfully');
-                    showSuccessMessage();
+                try {
+                    // Prepare form data
+                    const formData = new FormData(form);
                     
-                    // Clear form
-                    form.reset();
+                    // Add current page URL to prevent FormSubmit redirect
+                    formData.append('_next', window.location.href);
                     
-                    // Remove any error states
-                    form.querySelectorAll('.form-group').forEach(group => {
-                        group.classList.remove('error');
+                    // Submit form via fetch API
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        redirect: 'manual' // 🚫 Prevent redirect to FormSubmit page
                     });
                     
-                } else {
-                    // Error - show error message
-                    console.error('Form submission failed:', response.status);
-                    showErrorMessage('Failed to send message. Please try again or contact us directly.');
+                    console.log('Form submission response:', response.status);
+                    
+                    if (response.ok) {
+                        // Success - show success message
+                        console.log('Form submitted successfully');
+                        showSuccessMessage();
+                        
+                        // Clear form
+                        form.reset();
+                        
+                        // Remove any error states
+                        form.querySelectorAll('.form-group').forEach(group => {
+                            group.classList.remove('error');
+                        });
+                        
+                    } else {
+                        // Error - show error message
+                        console.error('Form submission failed:', response.status);
+                        showErrorMessage('Failed to send message. Please try again or contact us directly.');
+                    }
+                    
+                } catch (error) {
+                    // Network or other error
+                    console.error('Form submission error:', error);
+                    showErrorMessage('Network error. Please check your connection and try again.');
+                } finally {
+                    // Reset button state
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Send Message';
+                    }
+                }
+            });
+
+            // Success Message Functions
+            function showSuccessMessage() {
+                const message = document.getElementById('success-message');
+                
+                // Clear any existing timer
+                if (hideTimer) {
+                    clearTimeout(hideTimer);
+                    hideTimer = null;
                 }
                 
-            } catch (error) {
-                // Network or other error
-                console.error('Form submission error:', error);
-                showErrorMessage('Network error. Please check your connection and try again.');
-            } finally {
-                // Reset button state
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Message';
-                }
+                // Show message
+                message.classList.add('show');
+                
+                // Scroll to message (smooth scroll to make it visible)
+                message.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                });
+                
+                // Auto-hide after 10 seconds
+                hideTimer = setTimeout(() => {
+                    closeSuccessMessage();
+                }, 10000);
             }
+
+            function closeSuccessMessage() {
+                const message = document.getElementById('success-message');
+                
+                // Clear timer
+                if (hideTimer) {
+                    clearTimeout(hideTimer);
+                    hideTimer = null;
+                }
+                
+                // Hide message
+                message.classList.remove('show');
+            }
+
+            function showErrorMessage(errorText) {
+                const errorBox = document.getElementById('error-message-box');
+                const errorTextElement = document.getElementById('error-message-text');
+                
+                // Clear any existing timer
+                if (hideTimer) {
+                    clearTimeout(hideTimer);
+                    hideTimer = null;
+                }
+                
+                // Set error text
+                errorTextElement.textContent = errorText;
+                
+                // Show error message
+                errorBox.classList.add('show');
+                
+                // Scroll to message
+                errorBox.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                });
+                
+                // Auto-hide after 15 seconds (longer for errors)
+                hideTimer = setTimeout(() => {
+                    closeErrorMessage();
+                }, 15000);
+            }
+
+            function closeErrorMessage() {
+                const errorBox = document.getElementById('error-message-box');
+                
+                // Clear timer
+                if (hideTimer) {
+                    clearTimeout(hideTimer);
+                    hideTimer = null;
+                }
+                
+                // Hide message
+                errorBox.classList.remove('show');
+            }
+
+            // Close messages with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (document.getElementById('success-message').classList.contains('show')) {
+                        closeSuccessMessage();
+                    }
+                    if (document.getElementById('error-message-box').classList.contains('show')) {
+                        closeErrorMessage();
+                    }
+                }
+            });
         });
 
         // Map click handler
@@ -1626,97 +1717,6 @@
             item.style.transform = 'translateY(30px)';
             item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(item);
-        });
-
-        // Success Message Functions
-        function showSuccessMessage() {
-            const message = document.getElementById('success-message');
-            
-            // Clear any existing timer
-            if (hideTimer) {
-                clearTimeout(hideTimer);
-                hideTimer = null;
-            }
-            
-            // Show message
-            message.classList.add('show');
-            
-            // Scroll to message (smooth scroll to make it visible)
-            message.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'nearest' 
-            });
-            
-            // Auto-hide after 10 seconds
-            hideTimer = setTimeout(() => {
-                closeSuccessMessage();
-            }, 10000);
-        }
-
-        function closeSuccessMessage() {
-            const message = document.getElementById('success-message');
-            
-            // Clear timer
-            if (hideTimer) {
-                clearTimeout(hideTimer);
-                hideTimer = null;
-            }
-            
-            // Hide message
-            message.classList.remove('show');
-        }
-
-        function showErrorMessage(errorText) {
-            const errorBox = document.getElementById('error-message-box');
-            const errorTextElement = document.getElementById('error-message-text');
-            
-            // Clear any existing timer
-            if (hideTimer) {
-                clearTimeout(hideTimer);
-                hideTimer = null;
-            }
-            
-            // Set error text
-            errorTextElement.textContent = errorText;
-            
-            // Show error message
-            errorBox.classList.add('show');
-            
-            // Scroll to message
-            errorBox.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'nearest' 
-            });
-            
-            // Auto-hide after 15 seconds (longer for errors)
-            hideTimer = setTimeout(() => {
-                closeErrorMessage();
-            }, 15000);
-        }
-
-        function closeErrorMessage() {
-            const errorBox = document.getElementById('error-message-box');
-            
-            // Clear timer
-            if (hideTimer) {
-                clearTimeout(hideTimer);
-                hideTimer = null;
-            }
-            
-            // Hide message
-            errorBox.classList.remove('show');
-        }
-
-        // Close messages with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                if (document.getElementById('success-message').classList.contains('show')) {
-                    closeSuccessMessage();
-                }
-                if (document.getElementById('error-message-box').classList.contains('show')) {
-                    closeErrorMessage();
-                }
-            }
         });
     </script>
 
