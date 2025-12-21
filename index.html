@@ -70,6 +70,46 @@
             min-height: 100vh;
         }
         
+        /* Holiday Banner */
+        .holiday-banner {
+            background: linear-gradient(135deg, #d7263d, #f46036);
+            color: white;
+            text-align: center;
+            padding: 10px 40px; /* More padding on sides for close button */
+            position: relative;
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+        }
+
+        .holiday-banner p {
+            margin: 0;
+        }
+
+        .close-banner {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+            line-height: 1;
+            padding: 5px;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-banner:hover {
+            opacity: 1;
+        }
+        
         /* Header Styles */
         header {
             background: linear-gradient(135deg, #0073e6, #57b846);
@@ -80,6 +120,11 @@
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
+            transition: top 0.4s ease; /* Smooth transition for header */
+        }
+
+        body.banner-visible header {
+            top: 45px; /* Approximate height of the banner */
         }
         
         .nav-container {
@@ -185,6 +230,11 @@
             margin-top: 80px;
             position: relative;
             overflow: hidden;
+            transition: margin-top 0.4s ease; /* Add transition */
+        }
+
+        body.banner-visible .hero {
+            margin-top: 125px; /* 80px (header height) + 45px (banner height) */
         }
         
         .hero::before {
@@ -703,9 +753,13 @@
                 background: linear-gradient(135deg, #0073e6, #57b846);
                 width: 100%;
                 text-align: center;
-                transition: 0.3s;
+                transition: left 0.3s, top 0.4s ease;
                 padding: 2rem 0;
                 backdrop-filter: blur(10px);
+            }
+
+            body.banner-visible .nav-menu {
+                top: 125px; /* 80px (header height) + 45px (banner height) */
             }
             
             .nav-menu.active {
@@ -766,6 +820,12 @@
     </style>
 </head>
 <body>
+    <!-- Holiday Banner -->
+    <div class="holiday-banner" id="holiday-banner">
+        <p>🎅 Merry Christmas & Happy New Year! 🎉 We wish you a festive season filled with joy and prosperity.</p>
+        <button class="close-banner" id="close-banner" aria-label="Close banner">&times;</button>
+    </div>
+
     <!-- Header -->
     <header>
         <nav class="nav-container">
@@ -953,6 +1013,32 @@
     </div>
 
     <script>
+        // Holiday Banner Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('holiday-banner');
+            const closeBtn = document.getElementById('close-banner');
+            
+            if (!banner || !closeBtn) return;
+
+            const now = new Date();
+            const currentMonth = now.getMonth(); // 11 for December, 0 for January
+            const currentDate = now.getDate();
+
+            // Show the banner if it's December, or if it's January 1st-5th.
+            const isDecember = currentMonth === 11;
+            const isEarlyJanuary = currentMonth === 0 && currentDate <= 5;
+
+            if (isDecember || isEarlyJanuary) {
+                banner.style.display = 'flex';
+                document.body.classList.add('banner-visible');
+            }
+
+            closeBtn.addEventListener('click', () => {
+                banner.style.display = 'none';
+                document.body.classList.remove('banner-visible');
+            });
+        });
+
         // Mobile Navigation Toggle
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
