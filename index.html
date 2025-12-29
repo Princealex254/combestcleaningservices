@@ -70,47 +70,80 @@
             min-height: 100vh;
         }
         
-        /* Holiday Banner */
-        .holiday-banner {
-            background: linear-gradient(135deg, #d7263d, #f46036);
-            color: white;
-            text-align: center;
-            padding: 10px 40px; /* More padding on sides for close button */
+        /* New Year Overlay */
+        .overlay-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            display: none; /* Hidden by default */
-            align-items: center;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            display: none;
             justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 500;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1001;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+        
+        .overlay-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            border: 2px solid #ffd700;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
-        .holiday-banner p {
-            margin: 0;
+        .overlay-content h2 {
+            color: #0073e6;
+            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            font-weight: 700;
         }
 
-        .close-banner {
+        .close-overlay {
             position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
+            top: 15px;
+            right: 20px;
             background: none;
             border: none;
-            color: white;
-            font-size: 1.5rem;
+            color: #999;
+            font-size: 2rem;
             cursor: pointer;
-            opacity: 0.8;
             line-height: 1;
-            padding: 5px;
             transition: opacity 0.3s ease;
         }
 
-        .close-banner:hover {
-            opacity: 1;
+        .close-overlay:hover {
+            color: #333;
+        }
+        
+        .overlay-btn {
+            background: linear-gradient(135deg, #0073e6, #57b846);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,115,230,0.2);
+        }
+        
+        .overlay-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,115,230,0.3);
         }
         
         /* Header Styles */
@@ -126,10 +159,6 @@
             transition: top 0.4s ease; /* Smooth transition for header */
         }
 
-        body.banner-visible header {
-            top: 45px; /* Approximate height of the banner */
-        }
-        
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -236,10 +265,6 @@
             transition: margin-top 0.4s ease; /* Add transition */
         }
 
-        body.banner-visible .hero {
-            margin-top: 125px; /* 80px (header height) + 45px (banner height) */
-        }
-        
         .hero::before {
             content: '';
             position: absolute;
@@ -760,10 +785,6 @@
                 padding: 2rem 0;
                 backdrop-filter: blur(10px);
             }
-
-            body.banner-visible .nav-menu {
-                top: 125px; /* 80px (header height) + 45px (banner height) */
-            }
             
             .nav-menu.active {
                 left: 0;
@@ -823,10 +844,15 @@
     </style>
 </head>
 <body>
-    <!-- Holiday Banner -->
-    <div class="holiday-banner" id="holiday-banner">
-        <p>🎅 Merry Christmas & Happy New Year! 🎉 We wish you a festive season filled with joy and prosperity.</p>
-        <button class="close-banner" id="close-banner" aria-label="Close banner">&times;</button>
+    <!-- New Year Overlay -->
+    <div id="new-year-overlay" class="overlay-container">
+        <div class="overlay-content">
+            <button id="close-overlay" class="close-overlay" aria-label="Close overlay">&times;</button>
+            <h2>🎉 Happy New Year 2026! 🥂</h2>
+            <p style="color: #555; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1rem;">As we step into 2026, COMBEST Cleaning Services wishes you a year filled with joy, prosperity, and sparkling clean spaces!</p>
+            <p style="color: #666; font-style: italic;">Thank you for making us your #1 cleaning partner.</p>
+            <button id="overlay-cta" class="overlay-btn">Continue to Site</button>
+        </div>
     </div>
 
     <!-- Header -->
@@ -1016,29 +1042,40 @@
     </div>
 
     <script>
-        // Holiday Banner Logic
+        // New Year Overlay Logic
         document.addEventListener('DOMContentLoaded', () => {
-            const banner = document.getElementById('holiday-banner');
-            const closeBtn = document.getElementById('close-banner');
+            const overlay = document.getElementById('new-year-overlay');
+            const closeBtn = document.getElementById('close-overlay');
+            const ctaBtn = document.getElementById('overlay-cta');
             
-            if (!banner || !closeBtn) return;
+            if (!overlay) return;
 
             const now = new Date();
-            const currentMonth = now.getMonth(); // 11 for December, 0 for January
-            const currentDate = now.getDate();
+            // Overlay active until Jan 6th, 2026 (inclusive, so check against Jan 7th)
+            const expiryDate = new Date('2026-01-07T00:00:00');
 
-            // Show the banner if it's December, or if it's January 1st-5th.
-            const isDecember = currentMonth === 11;
-            const isEarlyJanuary = currentMonth === 0 && currentDate <= 5;
-
-            if (isDecember || isEarlyJanuary) {
-                banner.style.display = 'flex';
-                document.body.classList.add('banner-visible');
+            if (now < expiryDate) {
+                overlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
             }
 
-            closeBtn.addEventListener('click', () => {
-                banner.style.display = 'none';
-                document.body.classList.remove('banner-visible');
+            function closeOverlay() {
+                overlay.style.opacity = '0';
+                overlay.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Restore scrolling
+                }, 500);
+            }
+
+            if (closeBtn) closeBtn.addEventListener('click', closeOverlay);
+            if (ctaBtn) ctaBtn.addEventListener('click', closeOverlay);
+            
+            // Close on click outside content
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    closeOverlay();
+                }
             });
         });
 
